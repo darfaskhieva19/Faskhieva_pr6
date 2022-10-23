@@ -1,0 +1,45 @@
+﻿<Page x:Class="Фасхиева_ПР6.PageAdmin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Фасхиева_ПР6"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageAdmin">
+
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Name="btnSelect" Content="Исходная таблица" Click="btnSelect_Click" Margin="5"/>
+                <Button Name="btnSortAsc" Content="По возрастанию" Click="btnSortAsc_Click" Margin="5"/>
+                <Button Name="btnSortDesc" Content="По убыванию" Click="btnSortDesc_Click" Margin="5"/>
+                <ComboBox Name="cbGender" IsEditable="True" IsReadOnly="True" SelectionChanged="cbGender_SelectionChanged" Width="200"/>
+                <ComboBoxItem>Женский</ComboBoxItem>
+                <ComboBoxItem>Мужской</ComboBoxItem>                
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <ComboBox Name="cbPoisk" IsEditable="True" IsReadOnly="True" SelectionChanged="cbPoisk_SelectionChanged" Width="200"/>
+                <ComboBoxItem>По фамилии</ComboBoxItem>
+                <ComboBoxItem>По имени</ComboBoxItem>
+                <TextBox Name="tbSeach"  Width="200"/>
+                <Button Name="btnSeach" Click="btnSeach_Click" Content="Найти" Margin="5" Width="65"/>
+                <Button Name="btnClear" Click="btnClear_Click" Content="Сброс" Margin="5" Width="65"/>
+            </StackPanel>
+            <StackPanel>
+                <DataGrid Name="dgUsers" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="14">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Фамилия" Width="*" Binding="{Binding surname}"/>
+                        <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding name}"/>
+                        <DataGridTextColumn Header="Отчетсво" Width="*" Binding="{Binding patronymic}"/>
+                        <DataGridTextColumn Header="Телефон" Width="*" Binding="{Binding phone}"/>
+                        <DataGridTextColumn Header="Дата рождения" Width="*" Binding="{Binding birthday, StringFormat={}{0:dd.MM.yyyy}}"/>
+                        <DataGridTextColumn Header="Пол" Width="70" Binding="{Binding Genders.gender}"/>
+                        <DataGridTextColumn Header="Логин" Width="*" Binding="{Binding login}"/>
+                        <DataGridTextColumn Header="Роль" Width="*" Binding="{Binding Role.role}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

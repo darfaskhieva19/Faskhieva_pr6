@@ -1,0 +1,727 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="idClient" />
+          </Key>
+          <Property Name="idClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronimyc" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="birthday" Type="date" Nullable="false" />
+          <Property Name="idGender" Type="int" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="int" Nullable="false" />
+          <Property Name="photo" Type="nvarchar(max)" />
+          <Property Name="idRole" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="idEducation" />
+          </Key>
+          <Property Name="idEducation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="education" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genders">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gender" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="idGroup" />
+          </Key>
+          <Property Name="idGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pricePerLesson" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Instructors">
+          <Key>
+            <PropertyRef Name="idInstruct" />
+          </Key>
+          <Property Name="idInstruct" Type="int" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronimyc" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="birthday" Type="date" Nullable="false" />
+          <Property Name="idGender" Type="int" Nullable="false" />
+          <Property Name="idCategory" Type="int" Nullable="false" />
+          <Property Name="idEducation" Type="int" Nullable="false" />
+          <Property Name="idPost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PassportData">
+          <Key>
+            <PropertyRef Name="idPassport" />
+          </Key>
+          <Property Name="idPassport" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="seria" Type="int" Nullable="false" />
+          <Property Name="nomer" Type="int" Nullable="false" />
+          <Property Name="division_code" Type="nchar" MaxLength="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="idPost" />
+          </Key>
+          <Property Name="idPost" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="post" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="idRole" />
+          </Key>
+          <Property Name="idRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeasonTicket">
+          <Key>
+            <PropertyRef Name="idTicket" />
+          </Key>
+          <Property Name="idTicket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="startDate" Type="date" Nullable="false" />
+          <Property Name="count" Type="int" Nullable="false" />
+          <Property Name="idGroup" Type="int" Nullable="false" />
+          <Property Name="idClient" Type="int" Nullable="false" />
+          <Property Name="endDate" Type="date" Nullable="false" />
+          <Property Name="cost" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Training">
+          <Key>
+            <PropertyRef Name="idTraining" />
+          </Key>
+          <Property Name="idTraining" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idInstruct" Type="int" Nullable="false" />
+          <Property Name="idGroup" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Clients_Genders">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="idGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="idRole" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructors_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Instructors" Type="Self.Instructors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="Instructors">
+              <PropertyRef Name="idCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructors_Education">
+          <End Role="Education" Type="Self.Education" Multiplicity="1" />
+          <End Role="Instructors" Type="Self.Instructors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Education">
+              <PropertyRef Name="idEducation" />
+            </Principal>
+            <Dependent Role="Instructors">
+              <PropertyRef Name="idEducation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructors_PassportData">
+          <End Role="PassportData" Type="Self.PassportData" Multiplicity="1" />
+          <End Role="Instructors" Type="Self.Instructors" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PassportData">
+              <PropertyRef Name="idPassport" />
+            </Principal>
+            <Dependent Role="Instructors">
+              <PropertyRef Name="idInstruct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructors_Posts">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+          <End Role="Instructors" Type="Self.Instructors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="idPost" />
+            </Principal>
+            <Dependent Role="Instructors">
+              <PropertyRef Name="idPost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SeasonTicket_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="SeasonTicket" Type="Self.SeasonTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="SeasonTicket">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SeasonTicket_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="SeasonTicket" Type="Self.SeasonTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="idGroup" />
+            </Principal>
+            <Dependent Role="SeasonTicket">
+              <PropertyRef Name="idGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Training_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Training" Type="Self.Training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="idGroup" />
+            </Principal>
+            <Dependent Role="Training">
+              <PropertyRef Name="idGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Training_Instructors">
+          <End Role="Instructors" Type="Self.Instructors" Multiplicity="1" />
+          <End Role="Training" Type="Self.Training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructors">
+              <PropertyRef Name="idInstruct" />
+            </Principal>
+            <Dependent Role="Training">
+              <PropertyRef Name="idInstruct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instructors" EntityType="Self.Instructors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassportData" EntityType="Self.PassportData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SeasonTicket" EntityType="Self.SeasonTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Clients_Genders" Association="Self.FK_Clients_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_Role" Association="Self.FK_Clients_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructors_Category" Association="Self.FK_Instructors_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Instructors" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructors_Education" Association="Self.FK_Instructors_Education">
+            <End Role="Education" EntitySet="Education" />
+            <End Role="Instructors" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructors_PassportData" Association="Self.FK_Instructors_PassportData">
+            <End Role="PassportData" EntitySet="PassportData" />
+            <End Role="Instructors" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructors_Posts" Association="Self.FK_Instructors_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Instructors" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SeasonTicket_Clients" Association="Self.FK_SeasonTicket_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="SeasonTicket" EntitySet="SeasonTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SeasonTicket_Group" Association="Self.FK_SeasonTicket_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="SeasonTicket" EntitySet="SeasonTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Training_Group" Association="Self.FK_Training_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Training" EntitySet="Training" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Training_Instructors" Association="Self.FK_Training_Instructors">
+            <End Role="Instructors" EntitySet="Instructors" />
+            <End Role="Training" EntitySet="Training" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CentrEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Category" EntityType="Model.Category" />
+          <EntitySet Name="Clients" EntityType="Model.Clients" />
+          <EntitySet Name="Education" EntityType="Model.Education" />
+          <EntitySet Name="Genders" EntityType="Model.Genders" />
+          <EntitySet Name="Group" EntityType="Model.Group" />
+          <EntitySet Name="Instructors" EntityType="Model.Instructors" />
+          <EntitySet Name="PassportData" EntityType="Model.PassportData" />
+          <EntitySet Name="Posts" EntityType="Model.Posts" />
+          <EntitySet Name="Role" EntityType="Model.Role" />
+          <EntitySet Name="SeasonTicket" EntityType="Model.SeasonTicket" />
+          <EntitySet Name="Training" EntityType="Model.Training" />
+          <AssociationSet Name="FK_Instructors_Category" Association="Model.FK_Instructors_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Instructors" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_Genders" Association="Model.FK_Clients_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_Role" Association="Model.FK_Clients_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SeasonTicket_Clients" Association="Model.FK_SeasonTicket_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="SeasonTicket" EntitySet="SeasonTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructors_Education" Association="Model.FK_Instructors_Education">
+            <End Role="Education" EntitySet="Education" />
+            <End Role="Instructors" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SeasonTicket_Group" Association="Model.FK_SeasonTicket_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="SeasonTicket" EntitySet="SeasonTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Training_Group" Association="Model.FK_Training_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Training" EntitySet="Training" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructors_PassportData" Association="Model.FK_Instructors_PassportData">
+            <End Role="PassportData" EntitySet="PassportData" />
+            <End Role="Instructors" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructors_Posts" Association="Model.FK_Instructors_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Instructors" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Training_Instructors" Association="Model.FK_Training_Instructors">
+            <End Role="Instructors" EntitySet="Instructors" />
+            <End Role="Training" EntitySet="Training" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Instructors" Relationship="Model.FK_Instructors_Category" FromRole="Category" ToRole="Instructors" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="idClient" />
+          </Key>
+          <Property Name="idClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="patronimyc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idGender" Type="Int32" Nullable="false" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="Int32" Nullable="false" />
+          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Genders" Relationship="Model.FK_Clients_Genders" FromRole="Clients" ToRole="Genders" />
+          <NavigationProperty Name="Role" Relationship="Model.FK_Clients_Role" FromRole="Clients" ToRole="Role" />
+          <NavigationProperty Name="SeasonTicket" Relationship="Model.FK_SeasonTicket_Clients" FromRole="Clients" ToRole="SeasonTicket" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="idEducation" />
+          </Key>
+          <Property Name="idEducation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="education1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Instructors" Relationship="Model.FK_Instructors_Education" FromRole="Education" ToRole="Instructors" />
+        </EntityType>
+        <EntityType Name="Genders">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Clients" Relationship="Model.FK_Clients_Genders" FromRole="Genders" ToRole="Clients" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="idGroup" />
+          </Key>
+          <Property Name="idGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pricePerLesson" Type="Double" Nullable="false" />
+          <NavigationProperty Name="SeasonTicket" Relationship="Model.FK_SeasonTicket_Group" FromRole="Group" ToRole="SeasonTicket" />
+          <NavigationProperty Name="Training" Relationship="Model.FK_Training_Group" FromRole="Group" ToRole="Training" />
+        </EntityType>
+        <EntityType Name="Instructors">
+          <Key>
+            <PropertyRef Name="idInstruct" />
+          </Key>
+          <Property Name="idInstruct" Type="Int32" Nullable="false" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="patronimyc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idGender" Type="Int32" Nullable="false" />
+          <Property Name="idCategory" Type="Int32" Nullable="false" />
+          <Property Name="idEducation" Type="Int32" Nullable="false" />
+          <Property Name="idPost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Model.FK_Instructors_Category" FromRole="Instructors" ToRole="Category" />
+          <NavigationProperty Name="Education" Relationship="Model.FK_Instructors_Education" FromRole="Instructors" ToRole="Education" />
+          <NavigationProperty Name="PassportData" Relationship="Model.FK_Instructors_PassportData" FromRole="Instructors" ToRole="PassportData" />
+          <NavigationProperty Name="Posts" Relationship="Model.FK_Instructors_Posts" FromRole="Instructors" ToRole="Posts" />
+          <NavigationProperty Name="Training" Relationship="Model.FK_Training_Instructors" FromRole="Instructors" ToRole="Training" />
+        </EntityType>
+        <EntityType Name="PassportData">
+          <Key>
+            <PropertyRef Name="idPassport" />
+          </Key>
+          <Property Name="idPassport" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="seria" Type="Int32" Nullable="false" />
+          <Property Name="nomer" Type="Int32" Nullable="false" />
+          <Property Name="division_code" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Instructors" Relationship="Model.FK_Instructors_PassportData" FromRole="PassportData" ToRole="Instructors" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="idPost" />
+          </Key>
+          <Property Name="idPost" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="post" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Instructors" Relationship="Model.FK_Instructors_Posts" FromRole="Posts" ToRole="Instructors" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="idRole" />
+          </Key>
+          <Property Name="idRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Clients" Relationship="Model.FK_Clients_Role" FromRole="Role" ToRole="Clients" />
+        </EntityType>
+        <EntityType Name="SeasonTicket">
+          <Key>
+            <PropertyRef Name="idTicket" />
+          </Key>
+          <Property Name="idTicket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="count" Type="Int32" Nullable="false" />
+          <Property Name="idGroup" Type="Int32" Nullable="false" />
+          <Property Name="idClient" Type="Int32" Nullable="false" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cost" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="Model.FK_SeasonTicket_Clients" FromRole="SeasonTicket" ToRole="Clients" />
+          <NavigationProperty Name="Group" Relationship="Model.FK_SeasonTicket_Group" FromRole="SeasonTicket" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="Training">
+          <Key>
+            <PropertyRef Name="idTraining" />
+          </Key>
+          <Property Name="idTraining" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idInstruct" Type="Int32" Nullable="false" />
+          <Property Name="idGroup" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="Model.FK_Training_Group" FromRole="Training" ToRole="Group" />
+          <NavigationProperty Name="Instructors" Relationship="Model.FK_Training_Instructors" FromRole="Training" ToRole="Instructors" />
+        </EntityType>
+        <Association Name="FK_Instructors_Category">
+          <End Type="Model.Category" Role="Category" Multiplicity="1" />
+          <End Type="Model.Instructors" Role="Instructors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="Instructors">
+              <PropertyRef Name="idCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_Genders">
+          <End Type="Model.Genders" Role="Genders" Multiplicity="1" />
+          <End Type="Model.Clients" Role="Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="idGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_Role">
+          <End Type="Model.Role" Role="Role" Multiplicity="1" />
+          <End Type="Model.Clients" Role="Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="idRole" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SeasonTicket_Clients">
+          <End Type="Model.Clients" Role="Clients" Multiplicity="1" />
+          <End Type="Model.SeasonTicket" Role="SeasonTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="SeasonTicket">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructors_Education">
+          <End Type="Model.Education" Role="Education" Multiplicity="1" />
+          <End Type="Model.Instructors" Role="Instructors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Education">
+              <PropertyRef Name="idEducation" />
+            </Principal>
+            <Dependent Role="Instructors">
+              <PropertyRef Name="idEducation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SeasonTicket_Group">
+          <End Type="Model.Group" Role="Group" Multiplicity="1" />
+          <End Type="Model.SeasonTicket" Role="SeasonTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="idGroup" />
+            </Principal>
+            <Dependent Role="SeasonTicket">
+              <PropertyRef Name="idGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Training_Group">
+          <End Type="Model.Group" Role="Group" Multiplicity="1" />
+          <End Type="Model.Training" Role="Training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="idGroup" />
+            </Principal>
+            <Dependent Role="Training">
+              <PropertyRef Name="idGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructors_PassportData">
+          <End Type="Model.PassportData" Role="PassportData" Multiplicity="1" />
+          <End Type="Model.Instructors" Role="Instructors" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PassportData">
+              <PropertyRef Name="idPassport" />
+            </Principal>
+            <Dependent Role="Instructors">
+              <PropertyRef Name="idInstruct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructors_Posts">
+          <End Type="Model.Posts" Role="Posts" Multiplicity="1" />
+          <End Type="Model.Instructors" Role="Instructors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="idPost" />
+            </Principal>
+            <Dependent Role="Instructors">
+              <PropertyRef Name="idPost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Training_Instructors">
+          <End Type="Model.Instructors" Role="Instructors" Multiplicity="1" />
+          <End Type="Model.Training" Role="Training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructors">
+              <PropertyRef Name="idInstruct" />
+            </Principal>
+            <Dependent Role="Training">
+              <PropertyRef Name="idInstruct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="CentrEntities">
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="Model.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="category1" ColumnName="category" />
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="Model.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="patronimyc" ColumnName="patronimyc" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Education">
+            <EntityTypeMapping TypeName="Model.Education">
+              <MappingFragment StoreEntitySet="Education">
+                <ScalarProperty Name="education1" ColumnName="education" />
+                <ScalarProperty Name="idEducation" ColumnName="idEducation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="Model.Genders">
+              <MappingFragment StoreEntitySet="Genders">
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="Model.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="pricePerLesson" ColumnName="pricePerLesson" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="idGroup" ColumnName="idGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instructors">
+            <EntityTypeMapping TypeName="Model.Instructors">
+              <MappingFragment StoreEntitySet="Instructors">
+                <ScalarProperty Name="idPost" ColumnName="idPost" />
+                <ScalarProperty Name="idEducation" ColumnName="idEducation" />
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="patronimyc" ColumnName="patronimyc" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="idInstruct" ColumnName="idInstruct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassportData">
+            <EntityTypeMapping TypeName="Model.PassportData">
+              <MappingFragment StoreEntitySet="PassportData">
+                <ScalarProperty Name="division_code" ColumnName="division_code" />
+                <ScalarProperty Name="nomer" ColumnName="nomer" />
+                <ScalarProperty Name="seria" ColumnName="seria" />
+                <ScalarProperty Name="idPassport" ColumnName="idPassport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="Model.Posts">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="post" ColumnName="post" />
+                <ScalarProperty Name="idPost" ColumnName="idPost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="Model.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="role1" ColumnName="role" />
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeasonTicket">
+            <EntityTypeMapping TypeName="Model.SeasonTicket">
+              <MappingFragment StoreEntitySet="SeasonTicket">
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+                <ScalarProperty Name="idGroup" ColumnName="idGroup" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="idTicket" ColumnName="idTicket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Training">
+            <EntityTypeMapping TypeName="Model.Training">
+              <MappingFragment StoreEntitySet="Training">
+                <ScalarProperty Name="idGroup" ColumnName="idGroup" />
+                <ScalarProperty Name="idInstruct" ColumnName="idInstruct" />
+                <ScalarProperty Name="idTraining" ColumnName="idTraining" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
