@@ -56,54 +56,54 @@ namespace Фасхиева_ПР6
             }
         }
 
-        //bool IsPass(string password)
-        //{
-            //Regex r = new Regex("(?=.*[A-Z])");
-            //Regex r1 = new Regex("[a-z].*[a-z].*[a-z]");
-            //Regex r2 = new Regex("\\d.*\\d");
-            //Regex r3 = new Regex("[!@#$%^&*()_+=]");
-            //if (r.IsMatch(tbPassword.Password) == true)
-            //{
-            //    if (r1.IsMatch(tbPassword.Password) == true)
-            //    {
-            //        if (r2.IsMatch(tbPassword.Password) == true)
-            //        {
-            //            if (r3.IsMatch(tbPassword.Password) == true)
-            //            {
-            //                if (password.Length >= 8)
-            //                {
-            //                    return true;
-            //                }
-            //                else
-            //                {
-            //                    MessageBox.Show("Общая длина пароля не менее 8 символов!", "Регистрация", MessageBoxButton.OK, MessageBoxImage.Error);
-            //                    return false;
-            //                }
-            //            }
-            //            else
-            //            {
-            //                MessageBox.Show("Пароль должен содержать не менее 1 спец. символа!", "Регистрация", MessageBoxButton.OK, MessageBoxImage.Error);
-            //                return false;
-            //            }
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Пароль должен содержать не менее 2 цифры!", "Регистрация", MessageBoxButton.OK, MessageBoxImage.Error);
-            //            return false;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Пароль должен содержать не менее 3 строчных латинских символов!", "Регистрация", MessageBoxButton.OK, MessageBoxImage.Error);
-            //        return false;
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Пароль должен содержать не менее 1 заглавного латинского символа!", "Регистрация", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    return false;
-            //}
-        //}
+        bool IsPass(string password)
+        {
+            Regex r = new Regex("(?=.*[A-Z])");
+            Regex r1 = new Regex("[a-z].*[a-z].*[a-z]");
+            Regex r2 = new Regex("\\d.*\\d");
+            Regex r3 = new Regex("[!@#$%^&*()_+=]");
+            if (r.IsMatch(tbPassword.Password) == true)
+            {
+                if (r1.IsMatch(tbPassword.Password) == true)
+                {
+                    if (r2.IsMatch(tbPassword.Password) == true)
+                    {
+                        if (r3.IsMatch(tbPassword.Password) == true)
+                        {
+                            if (password.Length >= 8)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Общая длина пароля не менее 8 символов!", "Регистрация", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пароль должен содержать не менее 1 спец. символа!", "Регистрация", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Пароль должен содержать не менее 2 цифры!", "Регистрация", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Пароль должен содержать не менее 3 строчных латинских символов!", "Регистрация", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пароль должен содержать не менее 1 заглавного латинского символа!", "Регистрация", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
 
         private void btReg_Click(object sender, RoutedEventArgs e)
         {
@@ -116,31 +116,55 @@ namespace Фасхиева_ПР6
             {
                 gender = 2;
             }
-
-            int pas = tbPassword.Password.GetHashCode();
-            Clients log = DataBase.bd.Clients.FirstOrDefault(x => x.login == tbLogin.Text);
-            if (log == null)
+            if (Surname.Text == "" || Name.Text == "" || Patronimyc.Text == "" || Phone.Text == "" || Birthday.IsEnabled == false || tbLogin.Text == "" || tbPassword.Password == "")
             {
-                Clients client = new Clients()
+                if (RBWoman.IsChecked == false && RBMan.IsChecked == false)
                 {
-                    surname = Surname.Text,
-                    name = Name.Text,
-                    patronimyc = Patronimyc.Text,
-                    phone = Phone.Text,
-                    birthday = (DateTime)Birthday.SelectedDate,
-                    idGender = gender,
-                    login = tbLogin.Text,
-                    password = tbPassword.Password.GetHashCode(),
-                    idRole = 2
-                };
-                DataBase.bd.Clients.Add(client);
-                DataBase.bd.SaveChanges();
-                MessageBox.Show("Вы зарегистрированы!");
+                    MessageBox.Show("Выберите данные!");
+                }
+                else
+                {
+                    MessageBox.Show("Выберите данные!");
+                }
             }
             else
             {
-                MessageBox.Show("Такой логин уже существует! Придумайте другой логин!");
+                if (Telefon(Phone.Text))
+                {
+                    if (IsLogin(tbLogin.Text))
+                    {
+                        if (IsPass(tbPassword.Password))
+                        {
+                            int pas = tbPassword.Password.GetHashCode();
+                            Clients log = DataBase.bd.Clients.FirstOrDefault(x => x.login == tbLogin.Text);
+                            if (log == null)
+                            {
+                                Clients client = new Clients()
+                                {
+                                    surname = Surname.Text,
+                                    name = Name.Text,
+                                    patronimyc = Patronimyc.Text,
+                                    phone = Phone.Text,
+                                    birthday = (DateTime)Birthday.SelectedDate,
+                                    idGender = gender,
+                                    login = tbLogin.Text,
+                                    password = tbPassword.Password.GetHashCode(),
+                                    idRole = 2
+                                };
+                                DataBase.bd.Clients.Add(client);
+                                DataBase.bd.SaveChanges();
+                                MessageBox.Show("Вы зарегистрированы!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Такой логин уже существует! Придумайте другой логин!");
+                            }
+                        }
+                    }
+                }
             }
+
+            
 
             //if (Surname.Text == "" || Name.Text == "" || Patronimyc.Text == "" || Birthday.Text == "" || Phone.Text == "" || tbLogin.Text == "" || tbPassword.Password == "")
             //{
