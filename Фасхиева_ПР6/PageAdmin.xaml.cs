@@ -85,7 +85,7 @@ namespace Фасхиева_ПР6
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            ClassFrame.frameL.Navigate(new MenuAdmin());
         }
     }
 }

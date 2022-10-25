@@ -9,6 +9,32 @@
       Title="PageGroup">
 
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="395"/>
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="lGroup">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="5" CornerRadius="5" BorderThickness="1" BorderBrush="#445c93">
+                            <Grid Width="300" Height="200">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Group}" FontSize="16"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="2">
+            <Button Name="btnBack" Content="Вернуться в меню" Click="btnBack_Click" Template="{StaticResource Btn2}"/>
+        </StackPanel>
     </Grid>
 </Page>

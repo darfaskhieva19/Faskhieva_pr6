@@ -20,9 +20,16 @@ namespace Фасхиева_ПР6
     /// </summary>
     public partial class PageGroup : Page
     {
+        List<Group> groups = DataBase.bd.Group.ToList();
         public PageGroup()
         {
             InitializeComponent();
+            lGroup.ItemsSource = groups;
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.frameL.Navigate(new MenuAdmin());
         }
     }
 }

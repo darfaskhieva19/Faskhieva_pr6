@@ -47,7 +47,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1" Margin="2">
-            <Button Content="Вернуться назад" Click="Button_Click" Template="{StaticResource Btn2}"/>
+            <Button Content="Вернуться в меню" Click="Button_Click" Template="{StaticResource Btn2}"/>
         </StackPanel>
     </Grid>
 </Page>
