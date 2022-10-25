@@ -9,7 +9,7 @@
       Title="Authorization">
 
     <Grid VerticalAlignment="Center">
-        <StackPanel>
+        <StackPanel Width="400" HorizontalAlignment="Center">
             <TextBlock HorizontalAlignment="Center" Text="Авторизация" Style="{StaticResource Header}"/>
             <GroupBox Header="Логин">
                 <TextBox Name="tbLogin"/>
@@ -17,7 +17,7 @@
             <GroupBox Header="Пароль">
                 <PasswordBox Name="tbPassword"/>
             </GroupBox>
-            <Button x:Name="btAuto" Content="Войти" Width="150" Click="btAuto_Click" Template="{StaticResource Btn1}"/>
+            <Button x:Name="btAuto" Content="Войти" Width="150" Click="btAuto_Click"  Template="{StaticResource Btn1}"/>
         </StackPanel>
     </Grid>
 </Page>

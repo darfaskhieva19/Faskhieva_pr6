@@ -29,7 +29,6 @@ namespace Фасхиева_ПР6
         public int idGender { get; set; }
         public string login { get; set; }
         public int password { get; set; }
-        public string photo { get; set; }
         public int idRole { get; set; }
     
         public virtual Genders Genders { get; set; }

@@ -9,10 +9,10 @@
       Title="MenuAdmin">
 
     <Grid>
-        <StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
-                <Button Name="btUsers" Content="Пользователи" Width="150" Click="btUsers_Click"/>
-                <Button Name="btGroup" Content="Группы" Width="150" Click="btGroup_Click"/>
+                <Button Name="btUsers" Content="Пользователи" Click="btUsers_Click" Template="{StaticResource Btn3}"/>
+                <Button Name="btGroup" Content="Группы" Click="btGroup_Click" Template="{StaticResource Btn3}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

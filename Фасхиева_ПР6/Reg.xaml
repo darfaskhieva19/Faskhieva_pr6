@@ -5,28 +5,28 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Фасхиева_ПР6"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="750"
       Title="Registration">
 
     <Grid>
         <StackPanel>
             <StackPanel>
-                <TextBlock Text="Регистрация" HorizontalAlignment="Center"/>
+                <TextBlock Text="Регистрация" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
             </StackPanel>
             <StackPanel>
-                <GroupBox Header="Фамилия">
+                <GroupBox Header="Фамилия" Width="600">
                     <TextBox Name="Surname"/>
                 </GroupBox>
-                <GroupBox Header="Имя">
+                <GroupBox Header="Имя" Width="600">
                     <TextBox Name="Name"/>
                 </GroupBox>
-                <GroupBox Header="Отчество">
+                <GroupBox Header="Отчество" Width="600">
                     <TextBox Name="Patronimyc"/>
                 </GroupBox>
-                <GroupBox Header="Дата рождения">
+                <GroupBox Header="Дата рождения" Width="600">
                     <DatePicker Name="Birthday"/>
                 </GroupBox>
-                <GroupBox Header="Телефон">
+                <GroupBox Header="Телефон" Width="600">
                     <TextBox Name="Phone"/>
                 </GroupBox>
                 <GroupBox Header="Пол"  Width="200">
@@ -37,14 +37,14 @@
                 </GroupBox>
             </StackPanel>
             <StackPanel>
-                <GroupBox Header="Логин">
+                <GroupBox Header="Логин" Width="600">
                     <TextBox Name="tbLogin"/>
                 </GroupBox>
-                <GroupBox Header="Пароль">
+                <GroupBox Header="Пароль" Width="600">
                     <PasswordBox Name="tbPassword"/>
                 </GroupBox>
             </StackPanel>
-            <Button x:Name="btReg" Content="Зарегистрироваться" Width="205" Click="btReg_Click"/>
+            <Button x:Name="btReg" Content="Зарегистрироваться" Click="btReg_Click" Template="{StaticResource Btn}" Margin="10"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Фасхиева_ПР6"
         mc:Ignorable="d"
-        Title="Центр спортивного отдыха" Height="600" Width="950">
+        Title="Центр спортивного отдыха" Height="600" Width="775">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#E6F8D5">
             <Image Source="\Picture\logo.png" Margin="5"/>
-            <TextBlock Text="Центр спортивного центра" Style="{StaticResource Header}" VerticalAlignment="Center"/>
-            <StackPanel Margin="40, 20,0,0">
+            <TextBlock Text="Центр спортивного центра" Style="{StaticResource Header}"/>
+            <StackPanel Margin="40, 10,0,0">
                 <Button Name="btAuto" Content="Авторизироваться" Click="btAuto_Click" Template="{StaticResource Btn}"/>
                 <Button Name="btReg" Content="Зарегистироваться" Click="btReg_Click" Template="{StaticResource Btn}"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1" Background="#F4FAEE">
             <Frame Name="Mframe" NavigationUIVisibility="Hidden"/>
         </StackPanel>
     </Grid>

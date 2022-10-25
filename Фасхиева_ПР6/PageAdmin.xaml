@@ -11,19 +11,20 @@
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Name="btnSelect" Content="Исходная таблица" Click="btnSelect_Click" Margin="5"/>
-                <Button Name="btnSortAsc" Content="По возрастанию" Click="btnSortAsc_Click" Margin="5"/>
-                <Button Name="btnSortDesc" Content="По убыванию" Click="btnSortDesc_Click" Margin="5"/>
-                <ComboBox Name="cbGender" IsEditable="True" IsReadOnly="True" SelectionChanged="cbGender_SelectionChanged" Width="200"/>
+                <Button Name="btnSortAsc" Content="По возрастанию" Click="btnSortAsc_Click" Margin="5" Template="{StaticResource Btn3}"/>
+                <Button Name="btnSortDesc" Content="По убыванию" Click="btnSortDesc_Click" Margin="5" Template="{StaticResource Btn3}"/>
+                <ComboBox Name="cbGender" IsEditable="True" IsReadOnly="True" SelectionChanged="cbGender_SelectionChanged" Width="150" Height="30">
                 <ComboBoxItem>Женский</ComboBoxItem>
-                <ComboBoxItem>Мужской</ComboBoxItem>                
+                <ComboBoxItem>Мужской</ComboBoxItem>
+                </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <ComboBox Name="cbPoisk" IsEditable="True" IsReadOnly="True" SelectionChanged="cbPoisk_SelectionChanged" Width="200"/>
-                <ComboBoxItem>По фамилии</ComboBoxItem>
-                <ComboBoxItem>По имени</ComboBoxItem>
+                <ComboBox Name="cbPoisk" IsEditable="True" IsReadOnly="True" SelectionChanged="cbPoisk_SelectionChanged" Width="200">
+                    <ComboBoxItem>По фамилии</ComboBoxItem>
+                    <ComboBoxItem>По имени</ComboBoxItem>
+                </ComboBox>
                 <TextBox Name="tbSeach"  Width="200"/>
-                <Button Name="btnSeach" Click="btnSeach_Click" Content="Найти" Margin="5" Width="65"/>
+                <Button Name="btnSeach" Click="btnSeach_Click" Content="🔎" Margin="5" Width="40"/>
                 <Button Name="btnClear" Click="btnClear_Click" Content="Сброс" Margin="5" Width="65"/>
             </StackPanel>
             <StackPanel>
@@ -33,12 +34,15 @@
                         <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding name}"/>
                         <DataGridTextColumn Header="Отчетсво" Width="*" Binding="{Binding patronymic}"/>
                         <DataGridTextColumn Header="Телефон" Width="*" Binding="{Binding phone}"/>
-                        <DataGridTextColumn Header="Дата рождения" Width="*" Binding="{Binding birthday, StringFormat={}{0:dd.MM.yyyy}}"/>
+                        <DataGridTextColumn Header="Дата рождения" Width="110" Binding="{Binding birthday, StringFormat={}{0:dd.MM.yyyy}}"/>
                         <DataGridTextColumn Header="Пол" Width="70" Binding="{Binding Genders.gender}"/>
                         <DataGridTextColumn Header="Логин" Width="*" Binding="{Binding login}"/>
                         <DataGridTextColumn Header="Роль" Width="*" Binding="{Binding Role.role}"/>
                     </DataGrid.Columns>
                 </DataGrid>
+            </StackPanel>
+            <StackPanel>
+                <Button Content="Вернуться назад" Template="{StaticResource Btn2}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

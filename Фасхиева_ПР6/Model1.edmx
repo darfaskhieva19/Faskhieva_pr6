@@ -25,7 +25,6 @@
           <Property Name="idGender" Type="int" Nullable="false" />
           <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="int" Nullable="false" />
-          <Property Name="photo" Type="nvarchar(max)" />
           <Property Name="idRole" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Education">
@@ -359,7 +358,6 @@
           <Property Name="idGender" Type="Int32" Nullable="false" />
           <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="Int32" Nullable="false" />
-          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="idRole" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Genders" Relationship="Model.FK_Clients_Genders" FromRole="Clients" ToRole="Genders" />
           <NavigationProperty Name="Role" Relationship="Model.FK_Clients_Role" FromRole="Clients" ToRole="Role" />
@@ -599,7 +597,6 @@
             <EntityTypeMapping TypeName="Model.Clients">
               <MappingFragment StoreEntitySet="Clients">
                 <ScalarProperty Name="idRole" ColumnName="idRole" />
-                <ScalarProperty Name="photo" ColumnName="photo" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="idGender" ColumnName="idGender" />

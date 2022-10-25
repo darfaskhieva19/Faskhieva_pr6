@@ -25,6 +25,8 @@ namespace Фасхиева_ПР6
         public PageAdmin()
         {
             InitializeComponent();
+            //List<Clients> LisrC = DataBase.bd.Clients.ToList();
+
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
