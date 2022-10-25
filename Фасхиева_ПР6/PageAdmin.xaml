@@ -9,41 +9,45 @@
       Title="PageAdmin">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="395"/>          
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Name="btnSortAsc" Content="По возрастанию" Click="btnSortAsc_Click" Margin="5" Template="{StaticResource Btn3}"/>
                 <Button Name="btnSortDesc" Content="По убыванию" Click="btnSortDesc_Click" Margin="5" Template="{StaticResource Btn3}"/>
                 <ComboBox Name="cbGender" IsEditable="True" IsReadOnly="True" SelectionChanged="cbGender_SelectionChanged" Width="150" Height="30">
-                <ComboBoxItem>Женский</ComboBoxItem>
-                <ComboBoxItem>Мужской</ComboBoxItem>
+                    <ComboBoxItem>Женский</ComboBoxItem>
+                    <ComboBoxItem>Мужской</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <ComboBox Name="cbPoisk" IsEditable="True" IsReadOnly="True" SelectionChanged="cbPoisk_SelectionChanged" Width="200">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="2">
+                <ComboBox Name="cbPoisk" IsEditable="True" IsReadOnly="True" SelectionChanged="cbPoisk_SelectionChanged">
                     <ComboBoxItem>По фамилии</ComboBoxItem>
                     <ComboBoxItem>По имени</ComboBoxItem>
                 </ComboBox>
-                <TextBox Name="tbSeach"  Width="200"/>
+                <TextBox Name="tbSeach"  Width="200" Margin="2"/>
                 <Button Name="btnSeach" Click="btnSeach_Click" Content="🔎" Margin="5" Width="40"/>
                 <Button Name="btnClear" Click="btnClear_Click" Content="Сброс" Margin="5" Width="65"/>
             </StackPanel>
-            <StackPanel>
+            <StackPanel Grid.Row="0">
                 <DataGrid Name="dgUsers" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="14">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Фамилия" Width="*" Binding="{Binding surname}"/>
-                        <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding name}"/>
-                        <DataGridTextColumn Header="Отчетсво" Width="*" Binding="{Binding patronymic}"/>
-                        <DataGridTextColumn Header="Телефон" Width="*" Binding="{Binding phone}"/>
-                        <DataGridTextColumn Header="Дата рождения" Width="110" Binding="{Binding birthday, StringFormat={}{0:dd.MM.yyyy}}"/>
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding surname}" Width="*"/>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding name}" Width="*"/>
+                        <DataGridTextColumn Header="Отчество" Binding="{Binding patronimyc}" Width="110"/>
+                        <DataGridTextColumn Header="Телефон" Binding="{Binding phone}" Width="110"/>
+                        <DataGridTextColumn Header="Дата рождения" Binding="{Binding birthday, StringFormat={}{0:dd.MM.yyyy}}" Width="110"/>
                         <DataGridTextColumn Header="Пол" Width="70" Binding="{Binding Genders.gender}"/>
                         <DataGridTextColumn Header="Логин" Width="*" Binding="{Binding login}"/>
-                        <DataGridTextColumn Header="Роль" Width="*" Binding="{Binding Role.role}"/>
+                        <DataGridTextColumn Header="Роль" Width="110" Binding="{Binding Role.role1}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
-            <StackPanel>
-                <Button Content="Вернуться назад" Template="{StaticResource Btn2}"/>
-            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="2">
+            <Button Content="Вернуться назад" Click="Button_Click" Template="{StaticResource Btn2}"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -25,8 +25,7 @@ namespace Фасхиева_ПР6
         public PageAdmin()
         {
             InitializeComponent();
-            //List<Clients> LisrC = DataBase.bd.Clients.ToList();
-
+            dgUsers.ItemsSource=DataBase.bd.Clients.ToList();
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
@@ -41,7 +40,7 @@ namespace Фасхиева_ПР6
 
         private void btnSortDesc_Click(object sender, RoutedEventArgs e)
         {
-            //dgUser.ItemsSource = DataBase.bd.Clients.OrderByDescending(z => z.surname).ToList();
+            dgUsers.ItemsSource = DataBase.bd.Clients.OrderByDescending(z => z.surname).ToList();
         }
 
         private void cbGender_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -49,10 +48,10 @@ namespace Фасхиева_ПР6
             switch (cbGender.SelectedIndex)
             {
                 case 0:
-                   // dgUser.ItemsSource = DataBase.bd.Clients.Where(z => z.idGender == 1).ToList();
+                   dgUsers.ItemsSource = DataBase.bd.Clients.Where(z => z.idGender == 1).ToList();
                     break;
                 case 1:
-                   // dgUser.ItemsSource = DataBase.bd.Clients.Where(z => z.idGender == 2).ToList();
+                   dgUsers.ItemsSource = DataBase.bd.Clients.Where(z => z.idGender == 2).ToList();
                     break;
             }
         }
@@ -68,11 +67,11 @@ namespace Фасхиева_ПР6
             {
                 if (tbSeach.Text != "")
                 {
-                    //dgInstructions.ItemsSource = DataBase.bd.Instructors.Where(z => z.surname == tbSeach.Text).ToList();
+                    dgUsers.ItemsSource = DataBase.bd.Instructors.Where(z => z.surname == tbSeach.Text).ToList();
                 }
                 else
                 {
-                    //dgInstructions.ItemsSource = DataBase.bd.Instructors.Where(z => z.name == tbSeach.Text).ToList();
+                    dgUsers.ItemsSource = DataBase.bd.Instructors.Where(z => z.name == tbSeach.Text).ToList();
                 }
             }
         }
@@ -82,6 +81,11 @@ namespace Фасхиева_ПР6
             cbPoisk.SelectedIndex = -1;
             cbGender.SelectedIndex = -1;
             tbSeach.Text = "";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
