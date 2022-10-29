@@ -82,7 +82,7 @@
     <Compile Include="Instructors.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="MenuAdmin.xaml.cs">
+    <Compile Include="Pages\MenuAdmin.xaml.cs">
       <DependentUpon>MenuAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
@@ -100,13 +100,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="PageAdmin.xaml.cs">
+    <Compile Include="Pages\PageAdmin.xaml.cs">
       <DependentUpon>PageAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageGroup.xaml.cs">
+    <Compile Include="Pages\PageGroup.xaml.cs">
       <DependentUpon>PageGroup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageUser.xaml.cs">
+    <Compile Include="Pages\PageUser.xaml.cs">
       <DependentUpon>PageUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="PassportData.cs">
@@ -115,7 +115,7 @@
     <Compile Include="Posts.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Reg.xaml.cs">
+    <Compile Include="Pages\Reg.xaml.cs">
       <DependentUpon>Reg.xaml</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
@@ -127,7 +127,7 @@
     <Compile Include="Training.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Page Include="Auto.xaml">
+    <Page Include="Pages\Auto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,32 +139,32 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Auto.xaml.cs">
+    <Compile Include="Pages\Auto.xaml.cs">
       <DependentUpon>Auto.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ClassFrame.cs" />
-    <Compile Include="DataBase.cs" />
+    <Compile Include="Classes\ClassFrame.cs" />
+    <Compile Include="Classes\DataBase.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MenuAdmin.xaml">
+    <Page Include="Pages\MenuAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageAdmin.xaml">
+    <Page Include="Pages\PageAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageGroup.xaml">
+    <Page Include="Pages\PageGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageUser.xaml">
+    <Page Include="Pages\PageUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Reg.xaml">
+    <Page Include="Pages\Reg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,8 +219,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -15,21 +15,26 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Name="btnSortAsc" Content="По возрастанию" Click="btnSortAsc_Click" Margin="5" Template="{StaticResource Btn3}"/>
-                <Button Name="btnSortDesc" Content="По убыванию" Click="btnSortDesc_Click" Margin="5" Template="{StaticResource Btn3}"/>
+                <Button Name="btnSortAsc" Content="По возрастанию" Click="btnSortAsc_Click" Template="{StaticResource Btn3}"/>
+                <Button Name="btnSortDesc" Content="По убыванию" Click="btnSortDesc_Click" Template="{StaticResource Btn3}"/>
                 <ComboBox Name="cbGender" IsEditable="True" IsReadOnly="True" SelectionChanged="cbGender_SelectionChanged" Width="150" Height="30">
                     <ComboBoxItem>Женский</ComboBoxItem>
                     <ComboBoxItem>Мужской</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="2">
-                <ComboBox Name="cbPoisk" IsEditable="True" IsReadOnly="True" SelectionChanged="cbPoisk_SelectionChanged">
-                    <ComboBoxItem>По фамилии</ComboBoxItem>
-                    <ComboBoxItem>По имени</ComboBoxItem>
-                </ComboBox>
-                <TextBox Name="tbSeach"  Width="200" Margin="2"/>
-                <Button Name="btnSeach" Click="btnSeach_Click" Content="🔎" Margin="5" Width="40"/>
-                <Button Name="btnClear" Click="btnClear_Click" Content="Сброс" Margin="5" Width="65"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <RadioButton Name="surname" Content="по фамилии" Style="{StaticResource RB}" Click="RBsurname_Click"/>
+                <RadioButton Name="name" Content="по имени" Style="{StaticResource RB}" Click="RBname_Click"/>
+                <StackPanel Name="spSurname" Orientation="Horizontal" Margin="2" Visibility="Collapsed">
+                    <TextBlock Text="Фамилия" Style="{StaticResource TBlock}" />
+                    <TextBox Name="tbSurname"  Width="155" Margin="2" Height="30"/>
+                </StackPanel>
+                <StackPanel Name="spName" Orientation="Horizontal" Margin="2" Visibility="Collapsed">
+                    <TextBlock Text="Имя" Style="{StaticResource TBlock}"/>
+                    <TextBox Name="tbName"  Width="155" Margin="2" Height="30"/>
+                </StackPanel>
+                <Button Name="btnSeach" Click="btnSeach_Click" Content="🔎" Template="{StaticResource search}" Visibility="Collapsed"/>
+                <Button Name="btnClear" Click="btnClear_Click" Content="Сброс" Template="{StaticResource clean}"/>
             </StackPanel>
             <StackPanel Grid.Row="0">
                 <DataGrid Name="dgUsers" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="14">
@@ -46,7 +51,7 @@
                 </DataGrid>
             </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="1" Margin="2">
+        <StackPanel Grid.Row="1">
             <Button Content="Вернуться в меню" Click="Button_Click" Template="{StaticResource Btn2}"/>
         </StackPanel>
     </Grid>

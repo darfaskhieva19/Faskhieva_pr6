@@ -118,14 +118,7 @@ namespace Фасхиева_ПР6
             }
             if (Surname.Text == "" || Name.Text == "" || Patronimyc.Text == "" || Phone.Text == "" || Birthday.IsEnabled == false || tbLogin.Text == "" || tbPassword.Password == "")
             {
-                if (RBWoman.IsChecked == false && RBMan.IsChecked == false)
-                {
-                    MessageBox.Show("Выберите данные!");
-                }
-                else
-                {
-                    MessageBox.Show("Выберите данные!");
-                }
+                MessageBox.Show("Заполните поля!", "Регистрация", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
             }
             else
             {
@@ -162,97 +155,7 @@ namespace Фасхиева_ПР6
                         }
                     }
                 }
-            }
-
-            
-
-            //if (Surname.Text == "" || Name.Text == "" || Patronimyc.Text == "" || Birthday.Text == "" || Phone.Text == "" || tbLogin.Text == "" || tbPassword.Password == "")
-            //{
-            //    MessageBox.Show("Заполните поля!", "Регистрация", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-            //}
-            //else
-            //{
-            //    if (IsLogin(tbLogin.Text))
-            //    {
-            //        if (Telefon(Phone.Text))
-            //        {
-            //            if (IsPass(tbPassword.Password))
-            //            {
-            //                int gender = 0;
-            //                if (RBWoman.IsChecked == true)
-            //                {
-            //                    gender = 1;
-            //                }
-            //                else if (RBMan.IsChecked == true)
-            //                {
-            //                    gender = 2;
-            //                }
-            //                if (rbClient.IsChecked == true)
-            //                {
-            //                    Logins log = new Logins()
-            //                    {
-            //                        login = tbLogin.Text,
-            //                        password = tbPassword.Password.GetHashCode(),
-            //                        idRole = 3
-            //                    };
-            //                    DataBase.bd.Logins.Add(log);
-            //                    DataBase.bd.SaveChanges();
-            //                    Clients client = new Clients()
-            //                    {
-            //                        idClient = log.kodUsers,
-            //                        surname = Surname.Text,
-            //                        name = Name.Text,
-            //                        patronimyc = Patronimyc.Text,
-            //                        phone = Phone.Text,
-            //                        birthday = (DateTime)Birthday.SelectedDate,
-            //                        idGender = gender,
-            //                    };
-            //                    DataBase.bd.Clients.Add(client);
-            //                    DataBase.bd.SaveChanges();
-            //                    MessageBox.Show("Успешная регистрация!", "Регистрация", MessageBoxButton.OK, MessageBoxImage.Information);
-            //                }
-            //                else
-            //                {
-            //                    if (IsInstuct(cbCategory.SelectedIndex, cbEducation.SelectedIndex))
-            //                    {
-            //                        Logins log = new Logins()
-            //                        {
-            //                            login = tbLogin.Text,
-            //                            password = tbPassword.Password.GetHashCode(),
-            //                            idRole = 3
-            //                        };
-            //                        DataBase.bd.Logins.Add(log);
-            //                        DataBase.bd.SaveChanges();
-            //                        Instructors instructors = new Instructors()
-            //                        {
-            //                            idInstruct = log.kodUsers,
-            //                            surname = Surname.Text,
-            //                            name = Name.Text,
-            //                            patronimyc = Patronimyc.Text,
-            //                            phone = Phone.Text,
-            //                            idCategory = (int)cbCategory.SelectedValue,
-            //                            idEducation = (int)cbEducation.SelectedValue,
-            //                            idGender = gender,
-            //                            birthday = (DateTime)Birthday.SelectedDate,
-            //                        };
-            //                        DataBase.bd.Instructors.Add(instructors);
-            //                        DataBase.bd.SaveChanges();
-            //                        PassportData pasport = new PassportData()
-            //                        {
-            //                            idPassport = instructors.idInstruct,
-            //                            seria = Convert.ToInt32(Seria.Text),
-            //                            nomer = Convert.ToInt32(Number.Text),
-            //                            division_code = DivisionCode.Text,
-            //                        };
-            //                        DataBase.bd.PassportData.Add(pasport);
-            //                        DataBase.bd.SaveChanges();
-            //                        MessageBox.Show("Успешная регистрация!", "Регистрация", MessageBoxButton.OK, MessageBoxImage.Information);
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
+            }          
         }
     }
 }

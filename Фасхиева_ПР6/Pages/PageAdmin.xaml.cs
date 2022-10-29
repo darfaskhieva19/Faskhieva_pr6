@@ -56,36 +56,44 @@ namespace Фасхиева_ПР6
             }
         }
 
-        private void cbPoisk_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
         private void btnSeach_Click(object sender, RoutedEventArgs e)
         {
-            if (cbPoisk.SelectedIndex != -1)
+            if (tbSurname.Text != "")
             {
-                if (tbSeach.Text != "")
-                {
-                    dgUsers.ItemsSource = DataBase.bd.Instructors.Where(z => z.surname == tbSeach.Text).ToList();
-                }
-                else
-                {
-                    dgUsers.ItemsSource = DataBase.bd.Instructors.Where(z => z.name == tbSeach.Text).ToList();
-                }
+                dgUsers.ItemsSource = DataBase.bd.Clients.Where(z => z.surname == tbSurname.Text).ToList();
             }
-        }
-
-        private void btnClear_Click(object sender, RoutedEventArgs e)
-        {
-            cbPoisk.SelectedIndex = -1;
-            cbGender.SelectedIndex = -1;
-            tbSeach.Text = "";
+            else if (tbName.Text != "")
+            {
+                dgUsers.ItemsSource = DataBase.bd.Clients.Where(z => z.name == tbName.Text).ToList();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ClassFrame.frameL.Navigate(new MenuAdmin());
+        }
+
+        private void RBname_Click(object sender, RoutedEventArgs e)
+        {
+            spSurname.Visibility = Visibility.Collapsed;
+            spName.Visibility = Visibility.Visible;
+            btnSeach.Visibility = Visibility.Visible;
+        }
+
+        private void RBsurname_Click(object sender, RoutedEventArgs e)
+        {
+            spSurname.Visibility = Visibility.Visible;
+            spName.Visibility = Visibility.Collapsed;
+            btnSeach.Visibility = Visibility.Visible;
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            cbGender.SelectedIndex = -1;
+            tbSurname.Text = "";
+            tbName.Text = "";
+            dgUsers.ItemsSource = DataBase.bd.Clients.ToList();
+
         }
     }
 }

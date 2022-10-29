@@ -8,13 +8,13 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Authorization">
 
-    <Grid VerticalAlignment="Center">
-        <StackPanel Width="400" HorizontalAlignment="Center">
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
             <TextBlock HorizontalAlignment="Center" Text="Авторизация" Style="{StaticResource Header}"/>
-            <GroupBox Header="Логин">
-                <TextBox Name="tbLogin"/>
-            </GroupBox>
-            <GroupBox Header="Пароль">
+            <GroupBox Header="Логин" Width="250" Style="{StaticResource gpStyle}">
+                    <TextBox Name="tbLogin"/>
+                </GroupBox>
+            <GroupBox Header="Пароль" Width="250" Style="{StaticResource gpStyle}">
                 <PasswordBox Name="tbPassword"/>
             </GroupBox>
             <Button x:Name="btAuto" Content="Войти" Width="150" Click="btAuto_Click"  Template="{StaticResource Btn1}"/>
