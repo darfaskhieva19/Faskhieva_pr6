@@ -25,7 +25,9 @@
                         <Border Padding="5" CornerRadius="5" BorderThickness="1" BorderBrush="#445c93">
                             <Grid Width="300" Height="200">
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Group}" FontSize="16"/>
+                                    <TextBlock Text="{Binding title}"/>
+                                    <TextBlock Name="tbInstruction" Uid="{Binding idInstruct}" TextWrapping="Wrap" Loaded="tbInstruction_Loaded"/>
+                                    <TextBlock Uid="{Binding idGroup}" Name="tbCost" Loaded="tbCost_Loaded"/>
                                 </StackPanel>
                             </Grid>
                         </Border>

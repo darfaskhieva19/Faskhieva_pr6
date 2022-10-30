@@ -47,7 +47,7 @@
           </Key>
           <Property Name="idGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="pricePerLesson" Type="float" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Instructors">
           <Key>
@@ -62,7 +62,6 @@
           <Property Name="idGender" Type="int" Nullable="false" />
           <Property Name="idCategory" Type="int" Nullable="false" />
           <Property Name="idEducation" Type="int" Nullable="false" />
-          <Property Name="idPost" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PassportData">
           <Key>
@@ -72,13 +71,6 @@
           <Property Name="seria" Type="int" Nullable="false" />
           <Property Name="nomer" Type="int" Nullable="false" />
           <Property Name="division_code" Type="nchar" MaxLength="7" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Posts">
-          <Key>
-            <PropertyRef Name="idPost" />
-          </Key>
-          <Property Name="idPost" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="post" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -167,18 +159,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Instructors_Posts">
-          <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
-          <End Role="Instructors" Type="Self.Instructors" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Posts">
-              <PropertyRef Name="idPost" />
-            </Principal>
-            <Dependent Role="Instructors">
-              <PropertyRef Name="idPost" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SeasonTicket_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
           <End Role="SeasonTicket" Type="Self.SeasonTicket" Multiplicity="*" />
@@ -235,7 +215,6 @@
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Instructors" EntityType="Self.Instructors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PassportData" EntityType="Self.PassportData" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SeasonTicket" EntityType="Self.SeasonTicket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
@@ -257,10 +236,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Instructors_PassportData" Association="Self.FK_Instructors_PassportData">
             <End Role="PassportData" EntitySet="PassportData" />
-            <End Role="Instructors" EntitySet="Instructors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Instructors_Posts" Association="Self.FK_Instructors_Posts">
-            <End Role="Posts" EntitySet="Posts" />
             <End Role="Instructors" EntitySet="Instructors" />
           </AssociationSet>
           <AssociationSet Name="FK_SeasonTicket_Clients" Association="Self.FK_SeasonTicket_Clients">
@@ -292,7 +267,6 @@
           <EntitySet Name="Group" EntityType="Model.Group" />
           <EntitySet Name="Instructors" EntityType="Model.Instructors" />
           <EntitySet Name="PassportData" EntityType="Model.PassportData" />
-          <EntitySet Name="Posts" EntityType="Model.Posts" />
           <EntitySet Name="Role" EntityType="Model.Role" />
           <EntitySet Name="SeasonTicket" EntityType="Model.SeasonTicket" />
           <EntitySet Name="Training" EntityType="Model.Training" />
@@ -326,10 +300,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Instructors_PassportData" Association="Model.FK_Instructors_PassportData">
             <End Role="PassportData" EntitySet="PassportData" />
-            <End Role="Instructors" EntitySet="Instructors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Instructors_Posts" Association="Model.FK_Instructors_Posts">
-            <End Role="Posts" EntitySet="Posts" />
             <End Role="Instructors" EntitySet="Instructors" />
           </AssociationSet>
           <AssociationSet Name="FK_Training_Instructors" Association="Model.FK_Training_Instructors">
@@ -385,7 +355,7 @@
           </Key>
           <Property Name="idGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="pricePerLesson" Type="Double" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SeasonTicket" Relationship="Model.FK_SeasonTicket_Group" FromRole="Group" ToRole="SeasonTicket" />
           <NavigationProperty Name="Training" Relationship="Model.FK_Training_Group" FromRole="Group" ToRole="Training" />
         </EntityType>
@@ -402,11 +372,9 @@
           <Property Name="idGender" Type="Int32" Nullable="false" />
           <Property Name="idCategory" Type="Int32" Nullable="false" />
           <Property Name="idEducation" Type="Int32" Nullable="false" />
-          <Property Name="idPost" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Model.FK_Instructors_Category" FromRole="Instructors" ToRole="Category" />
           <NavigationProperty Name="Education" Relationship="Model.FK_Instructors_Education" FromRole="Instructors" ToRole="Education" />
           <NavigationProperty Name="PassportData" Relationship="Model.FK_Instructors_PassportData" FromRole="Instructors" ToRole="PassportData" />
-          <NavigationProperty Name="Posts" Relationship="Model.FK_Instructors_Posts" FromRole="Instructors" ToRole="Posts" />
           <NavigationProperty Name="Training" Relationship="Model.FK_Training_Instructors" FromRole="Instructors" ToRole="Training" />
         </EntityType>
         <EntityType Name="PassportData">
@@ -418,14 +386,6 @@
           <Property Name="nomer" Type="Int32" Nullable="false" />
           <Property Name="division_code" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Instructors" Relationship="Model.FK_Instructors_PassportData" FromRole="PassportData" ToRole="Instructors" />
-        </EntityType>
-        <EntityType Name="Posts">
-          <Key>
-            <PropertyRef Name="idPost" />
-          </Key>
-          <Property Name="idPost" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="post" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Instructors" Relationship="Model.FK_Instructors_Posts" FromRole="Posts" ToRole="Instructors" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -555,18 +515,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Instructors_Posts">
-          <End Type="Model.Posts" Role="Posts" Multiplicity="1" />
-          <End Type="Model.Instructors" Role="Instructors" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Posts">
-              <PropertyRef Name="idPost" />
-            </Principal>
-            <Dependent Role="Instructors">
-              <PropertyRef Name="idPost" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Training_Instructors">
           <End Type="Model.Instructors" Role="Instructors" Multiplicity="1" />
           <End Type="Model.Training" Role="Training" Multiplicity="*" />
@@ -628,7 +576,7 @@
           <EntitySetMapping Name="Group">
             <EntityTypeMapping TypeName="Model.Group">
               <MappingFragment StoreEntitySet="Group">
-                <ScalarProperty Name="pricePerLesson" ColumnName="pricePerLesson" />
+                <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="idGroup" ColumnName="idGroup" />
               </MappingFragment>
@@ -637,7 +585,6 @@
           <EntitySetMapping Name="Instructors">
             <EntityTypeMapping TypeName="Model.Instructors">
               <MappingFragment StoreEntitySet="Instructors">
-                <ScalarProperty Name="idPost" ColumnName="idPost" />
                 <ScalarProperty Name="idEducation" ColumnName="idEducation" />
                 <ScalarProperty Name="idCategory" ColumnName="idCategory" />
                 <ScalarProperty Name="idGender" ColumnName="idGender" />
@@ -657,14 +604,6 @@
                 <ScalarProperty Name="nomer" ColumnName="nomer" />
                 <ScalarProperty Name="seria" ColumnName="seria" />
                 <ScalarProperty Name="idPassport" ColumnName="idPassport" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Posts">
-            <EntityTypeMapping TypeName="Model.Posts">
-              <MappingFragment StoreEntitySet="Posts">
-                <ScalarProperty Name="post" ColumnName="post" />
-                <ScalarProperty Name="idPost" ColumnName="idPost" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

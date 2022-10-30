@@ -29,12 +29,10 @@ namespace Фасхиева_ПР6
         public int idGender { get; set; }
         public int idCategory { get; set; }
         public int idEducation { get; set; }
-        public int idPost { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Education Education { get; set; }
         public virtual PassportData PassportData { get; set; }
-        public virtual Posts Posts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Training> Training { get; set; }
     }

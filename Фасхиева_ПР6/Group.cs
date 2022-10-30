@@ -23,7 +23,7 @@ namespace Фасхиева_ПР6
     
         public int idGroup { get; set; }
         public string title { get; set; }
-        public double pricePerLesson { get; set; }
+        public int price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SeasonTicket> SeasonTicket { get; set; }
