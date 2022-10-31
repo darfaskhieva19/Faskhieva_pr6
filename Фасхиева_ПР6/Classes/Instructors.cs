@@ -8,12 +8,12 @@ namespace Фасхиева_ПР6.Classes
 {
     public partial class Instructors
     {
-        public string DataInstruct
-        {
-            get
-            {
-                return surname + " " + name + " " + patronimyc;
-            }
-        }
+        //public string dataInstructor
+        //{
+        //    get
+        //    {
+        //        return surname + " " + name + " " + patronimyc;
+        //    }
+        //}
     }
 }

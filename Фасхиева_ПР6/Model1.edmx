@@ -53,24 +53,22 @@
           <Key>
             <PropertyRef Name="idInstruct" />
           </Key>
-          <Property Name="idInstruct" Type="int" Nullable="false" />
+          <Property Name="idInstruct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="patronimyc" Type="nvarchar" MaxLength="50" />
           <Property Name="phone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="birthday" Type="date" Nullable="false" />
-          <Property Name="idGender" Type="int" Nullable="false" />
           <Property Name="idCategory" Type="int" Nullable="false" />
           <Property Name="idEducation" Type="int" Nullable="false" />
+          <Property Name="idPost" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="PassportData">
+        <EntityType Name="Posts">
           <Key>
-            <PropertyRef Name="idPassport" />
+            <PropertyRef Name="idPost" />
           </Key>
-          <Property Name="idPassport" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="seria" Type="int" Nullable="false" />
-          <Property Name="nomer" Type="int" Nullable="false" />
-          <Property Name="division_code" Type="nchar" MaxLength="7" Nullable="false" />
+          <Property Name="idPost" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="post" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -147,15 +145,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Instructors_PassportData">
-          <End Role="PassportData" Type="Self.PassportData" Multiplicity="1" />
-          <End Role="Instructors" Type="Self.Instructors" Multiplicity="0..1" />
+        <Association Name="FK_Instructors_Posts">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+          <End Role="Instructors" Type="Self.Instructors" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PassportData">
-              <PropertyRef Name="idPassport" />
+            <Principal Role="Posts">
+              <PropertyRef Name="idPost" />
             </Principal>
             <Dependent Role="Instructors">
-              <PropertyRef Name="idInstruct" />
+              <PropertyRef Name="idPost" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -214,7 +212,7 @@
           <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Instructors" EntityType="Self.Instructors" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PassportData" EntityType="Self.PassportData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SeasonTicket" EntityType="Self.SeasonTicket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
@@ -234,8 +232,8 @@
             <End Role="Education" EntitySet="Education" />
             <End Role="Instructors" EntitySet="Instructors" />
           </AssociationSet>
-          <AssociationSet Name="FK_Instructors_PassportData" Association="Self.FK_Instructors_PassportData">
-            <End Role="PassportData" EntitySet="PassportData" />
+          <AssociationSet Name="FK_Instructors_Posts" Association="Self.FK_Instructors_Posts">
+            <End Role="Posts" EntitySet="Posts" />
             <End Role="Instructors" EntitySet="Instructors" />
           </AssociationSet>
           <AssociationSet Name="FK_SeasonTicket_Clients" Association="Self.FK_SeasonTicket_Clients">
@@ -266,7 +264,7 @@
           <EntitySet Name="Genders" EntityType="Model.Genders" />
           <EntitySet Name="Group" EntityType="Model.Group" />
           <EntitySet Name="Instructors" EntityType="Model.Instructors" />
-          <EntitySet Name="PassportData" EntityType="Model.PassportData" />
+          <EntitySet Name="Posts" EntityType="Model.Posts" />
           <EntitySet Name="Role" EntityType="Model.Role" />
           <EntitySet Name="SeasonTicket" EntityType="Model.SeasonTicket" />
           <EntitySet Name="Training" EntityType="Model.Training" />
@@ -298,8 +296,8 @@
             <End Role="Group" EntitySet="Group" />
             <End Role="Training" EntitySet="Training" />
           </AssociationSet>
-          <AssociationSet Name="FK_Instructors_PassportData" Association="Model.FK_Instructors_PassportData">
-            <End Role="PassportData" EntitySet="PassportData" />
+          <AssociationSet Name="FK_Instructors_Posts" Association="Model.FK_Instructors_Posts">
+            <End Role="Posts" EntitySet="Posts" />
             <End Role="Instructors" EntitySet="Instructors" />
           </AssociationSet>
           <AssociationSet Name="FK_Training_Instructors" Association="Model.FK_Training_Instructors">
@@ -363,29 +361,27 @@
           <Key>
             <PropertyRef Name="idInstruct" />
           </Key>
-          <Property Name="idInstruct" Type="Int32" Nullable="false" />
+          <Property Name="idInstruct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="patronimyc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="idGender" Type="Int32" Nullable="false" />
           <Property Name="idCategory" Type="Int32" Nullable="false" />
           <Property Name="idEducation" Type="Int32" Nullable="false" />
+          <Property Name="idPost" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Model.FK_Instructors_Category" FromRole="Instructors" ToRole="Category" />
           <NavigationProperty Name="Education" Relationship="Model.FK_Instructors_Education" FromRole="Instructors" ToRole="Education" />
-          <NavigationProperty Name="PassportData" Relationship="Model.FK_Instructors_PassportData" FromRole="Instructors" ToRole="PassportData" />
+          <NavigationProperty Name="Posts" Relationship="Model.FK_Instructors_Posts" FromRole="Instructors" ToRole="Posts" />
           <NavigationProperty Name="Training" Relationship="Model.FK_Training_Instructors" FromRole="Instructors" ToRole="Training" />
         </EntityType>
-        <EntityType Name="PassportData">
+        <EntityType Name="Posts">
           <Key>
-            <PropertyRef Name="idPassport" />
+            <PropertyRef Name="idPost" />
           </Key>
-          <Property Name="idPassport" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="seria" Type="Int32" Nullable="false" />
-          <Property Name="nomer" Type="Int32" Nullable="false" />
-          <Property Name="division_code" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Instructors" Relationship="Model.FK_Instructors_PassportData" FromRole="PassportData" ToRole="Instructors" />
+          <Property Name="idPost" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="post" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Instructors" Relationship="Model.FK_Instructors_Posts" FromRole="Posts" ToRole="Instructors" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -503,15 +499,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Instructors_PassportData">
-          <End Type="Model.PassportData" Role="PassportData" Multiplicity="1" />
-          <End Type="Model.Instructors" Role="Instructors" Multiplicity="0..1" />
+        <Association Name="FK_Instructors_Posts">
+          <End Type="Model.Posts" Role="Posts" Multiplicity="1" />
+          <End Type="Model.Instructors" Role="Instructors" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PassportData">
-              <PropertyRef Name="idPassport" />
+            <Principal Role="Posts">
+              <PropertyRef Name="idPost" />
             </Principal>
             <Dependent Role="Instructors">
-              <PropertyRef Name="idInstruct" />
+              <PropertyRef Name="idPost" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -585,9 +581,9 @@
           <EntitySetMapping Name="Instructors">
             <EntityTypeMapping TypeName="Model.Instructors">
               <MappingFragment StoreEntitySet="Instructors">
+                <ScalarProperty Name="idPost" ColumnName="idPost" />
                 <ScalarProperty Name="idEducation" ColumnName="idEducation" />
                 <ScalarProperty Name="idCategory" ColumnName="idCategory" />
-                <ScalarProperty Name="idGender" ColumnName="idGender" />
                 <ScalarProperty Name="birthday" ColumnName="birthday" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="patronimyc" ColumnName="patronimyc" />
@@ -597,13 +593,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PassportData">
-            <EntityTypeMapping TypeName="Model.PassportData">
-              <MappingFragment StoreEntitySet="PassportData">
-                <ScalarProperty Name="division_code" ColumnName="division_code" />
-                <ScalarProperty Name="nomer" ColumnName="nomer" />
-                <ScalarProperty Name="seria" ColumnName="seria" />
-                <ScalarProperty Name="idPassport" ColumnName="idPassport" />
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="Model.Posts">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="post" ColumnName="post" />
+                <ScalarProperty Name="idPost" ColumnName="idPost" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -31,7 +31,7 @@ namespace Фасхиева_ПР6
         public virtual DbSet<Genders> Genders { get; set; }
         public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Instructors> Instructors { get; set; }
-        public virtual DbSet<PassportData> PassportData { get; set; }
+        public virtual DbSet<Posts> Posts { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<SeasonTicket> SeasonTicket { get; set; }
         public virtual DbSet<Training> Training { get; set; }

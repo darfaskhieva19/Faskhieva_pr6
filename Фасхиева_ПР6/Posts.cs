@@ -12,13 +12,18 @@ namespace Фасхиева_ПР6
     using System;
     using System.Collections.Generic;
     
-    public partial class PassportData
+    public partial class Posts
     {
-        public int idPassport { get; set; }
-        public int seria { get; set; }
-        public int nomer { get; set; }
-        public string division_code { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Posts()
+        {
+            this.Instructors = new HashSet<Instructors>();
+        }
     
-        public virtual Instructors Instructors { get; set; }
+        public int idPost { get; set; }
+        public string post { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Instructors> Instructors { get; set; }
     }
 }

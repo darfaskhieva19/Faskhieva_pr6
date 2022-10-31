@@ -68,6 +68,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Classes\Instructors.cs" />
+    <Compile Include="Classes\SeasonTicket.cs" />
     <Compile Include="Clients.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -110,11 +111,11 @@
     <Compile Include="Pages\PageUser.xaml.cs">
       <DependentUpon>PageUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PassportData.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Reg.xaml.cs">
       <DependentUpon>Reg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Posts.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
       <DependentUpon>Model1.tt</DependentUpon>
