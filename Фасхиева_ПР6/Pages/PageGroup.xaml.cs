@@ -45,21 +45,10 @@ namespace Фасхиева_ПР6
 
             tb.Text = "Стоимость в месяц: " + cost.ToString() + " руб.";       
         }
-
+        
         private void tbInstruction_Loaded(object sender, RoutedEventArgs e)
         {
-            TextBlock tb = (TextBlock)sender;
-            int index = Convert.ToInt32(tb.Uid);  
-            Training TR = DataBase.bd.Training.FirstOrDefault(x => x.idGroup == index);
-            if (TR != null)
-            {
-                tb.Text = "Инструктор: ";
-                //tb.Text += TR.Instructors.dataInstructor;
-            }
-            else
-            {
-                tb.Visibility = Visibility.Collapsed;
-            }
+
         }
     }
 }

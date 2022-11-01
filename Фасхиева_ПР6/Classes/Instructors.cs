@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Фасхиева_ПР6.Classes
+namespace Фасхиева_ПР6
 {
-    public partial class Instructors
+    public partial class Group
     {
         //public string dataInstructor
         //{
