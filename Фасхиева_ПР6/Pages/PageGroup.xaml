@@ -10,8 +10,8 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="395"/>
-            <RowDefinition Height="55"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <ListView Name="lGroup" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="#F4FAEE">
@@ -37,8 +37,9 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-        <StackPanel Grid.Row="1" Margin="2" Background="#E6F8D5">
+        <StackPanel Grid.Row="1" Margin="2" Background="#E6F8D5" Orientation="Horizontal">
             <Button Name="btnBack" Content="Вернуться в меню" Click="btnBack_Click" Template="{StaticResource Btn2}"/>
+            <Button Name="btnAdd" Content="Добавить" Click="btnAdd_Click" Template="{StaticResource Btn2}"/>
         </StackPanel>
     </Grid>
 </Page>

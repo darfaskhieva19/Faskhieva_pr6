@@ -101,6 +101,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PageAddUpdate.xaml.cs">
+      <DependentUpon>PageAddUpdate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PageAdmin.xaml.cs">
       <DependentUpon>PageAdmin.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\MenuAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageAddUpdate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

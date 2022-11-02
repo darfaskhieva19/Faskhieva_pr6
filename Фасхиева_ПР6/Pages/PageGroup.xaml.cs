@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Фасхиева_ПР6.Pages;
 
 namespace Фасхиева_ПР6
 {
@@ -71,6 +72,11 @@ namespace Фасхиева_ПР6
             }
 
             tb.Text = "Инструктор: " + str.Substring(0, str.Length);
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.frameL.Navigate(new PageAddUpdate());
         }
     }
 }
