@@ -14,7 +14,7 @@
             <RowDefinition Height="55"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="lGroup">
+            <ListView Name="lGroup" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="#F4FAEE">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel HorizontalAlignment="Center"></WrapPanel>
@@ -22,14 +22,14 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border Padding="3" CornerRadius="5" BorderThickness="1" BorderBrush="Black">
-                            <Grid Name="gridM" Width="300" Height="200" Background="{Binding ColorCost}">
+                        <Border Padding="1" CornerRadius="5" BorderThickness="0.5" BorderBrush="Black">
+                            <Grid Name="gridM" Width="310" Height="200" Background="{Binding ColorCost}">
                                 <StackPanel>
-                                    <TextBlock Text="{Binding title}"/>
-                                    <TextBlock Text="{Binding price, StringFormat=Стоимость за одно занятие: {0} руб.}"/>  
-                                    
-                                    <TextBlock Uid="{Binding idGroup}" Name="tbCost" Loaded="tbCost_Loaded"/>
-                                    <TextBlock Name="tbInstruction" Uid="{Binding idInstruct}" TextWrapping="Wrap" Loaded="tbInstruction_Loaded"/>
+                                    <TextBlock Text="{Binding NameGroup}" Style="{StaticResource TBlock}" HorizontalAlignment="Center"/>
+                                    <TextBlock TextWrapping="Wrap" Name="tbTraning" Uid="{Binding idGroup}"  Loaded="tbTraning_Loaded" Style="{StaticResource TBGroup}"/>
+                                    <TextBlock Text="{Binding PriceGroup}"  Style="{StaticResource TBGroup}"/>
+                                    <TextBlock Uid="{Binding idGroup}" Name="tbCount" Loaded="tbCount_Loaded"  Style="{StaticResource TBGroup}"/>
+                                    <TextBlock Uid="{Binding idGroup}" Name="tbCost" Loaded="tbCost_Loaded"  Style="{StaticResource TBGroup}"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -37,7 +37,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-        <StackPanel Grid.Row="1" Margin="2">
+        <StackPanel Grid.Row="1" Margin="2" Background="#E6F8D5">
             <Button Name="btnBack" Content="Вернуться в меню" Click="btnBack_Click" Template="{StaticResource Btn2}"/>
         </StackPanel>
     </Grid>

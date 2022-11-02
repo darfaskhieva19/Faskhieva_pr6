@@ -43,12 +43,34 @@ namespace Фасхиева_ПР6
                 cost += Convert.ToInt32(stc.count * stc.Group.price);
             }
 
-            tb.Text = "Стоимость в месяц: " + cost.ToString() + " руб.";       
+            tb.Text = "Стоимость занятий в месяц: " + cost.ToString() + " руб.";       
         }
-        
-        private void tbInstruction_Loaded(object sender, RoutedEventArgs e)
+       
+        private void tbCount_Loaded(object sender, RoutedEventArgs e)
         {
+            TextBlock tb = (TextBlock)sender;
+            int index = Convert.ToInt32(tb.Uid);
+            List<SeasonTicket> tick = DataBase.bd.SeasonTicket.Where(x => x.idGroup == index).ToList();
+            int count = 0;
+            foreach (SeasonTicket stc in tick)
+            {
+                count += Convert.ToInt32(stc.count);
+            }
+            tb.Text = "Количество посещений: " + count.ToString();
+        }
 
+        private void tbTraning_Loaded(object sender, RoutedEventArgs e)
+        {
+            TextBlock tb = (TextBlock)sender;  
+            int index = Convert.ToInt32(tb.Uid);             
+            List<Training> TR = DataBase.bd.Training.Where(x => x.idGroup == index).ToList();
+            string str = "";
+            foreach (Training t in TR)
+            {
+                str += t.Instructors.surname + " " + t.Instructors.name + " " + t.Instructors.patronimyc;
+            }
+
+            tb.Text = "Инструктор: " + str.Substring(0, str.Length);
         }
     }
 }

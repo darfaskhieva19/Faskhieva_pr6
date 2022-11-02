@@ -25,7 +25,6 @@ namespace Фасхиева_ПР6
         public string name { get; set; }
         public string patronimyc { get; set; }
         public string phone { get; set; }
-        public System.DateTime birthday { get; set; }
         public int idCategory { get; set; }
         public int idEducation { get; set; }
         public int idPost { get; set; }

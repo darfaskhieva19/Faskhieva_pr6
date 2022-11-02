@@ -15,11 +15,9 @@ namespace Фасхиева_ПР6
     public partial class SeasonTicket
     {
         public int idTicket { get; set; }
-        public System.DateTime startDate { get; set; }
         public int count { get; set; }
         public int idGroup { get; set; }
         public int idClient { get; set; }
-        public System.DateTime endDate { get; set; }
         public double cost { get; set; }
     
         public virtual Clients Clients { get; set; }

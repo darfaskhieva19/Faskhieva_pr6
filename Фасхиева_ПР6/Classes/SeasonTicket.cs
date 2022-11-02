@@ -16,12 +16,26 @@ namespace Фасхиева_ПР6
                 SeasonTicket ticket = DataBase.bd.SeasonTicket.FirstOrDefault(x => x.idGroup == idGroup);
                 if (ticket.cost >= 10000)
                 {
-                    return Brushes.Aqua;
+                    return Brushes.Lavender;
                 }
                 else
                 {
                     return Brushes.White;
                 }
+            }
+        }
+        public string PriceGroup
+        {
+            get
+            {
+                return "Стоимость одного занятия: " + price + " руб.";
+            }
+        }
+        public string NameGroup
+        {
+            get
+            {
+                return title;
             }
         }
     }
