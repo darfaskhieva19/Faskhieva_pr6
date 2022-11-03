@@ -35,7 +35,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Grid.Row="1" Margin="2" Background="#E6F8D5" Orientation="Horizontal">
+        <StackPanel Grid.Row="1" Background="#E6F8D5" Orientation="Horizontal">
             <Button Name="btnBack" Content="Вернуться в меню" Click="btnBack_Click" Template="{StaticResource Btn2}"/>
             <Button Name="btnAdd" Content="Добавить запись" Click="btnAdd_Click" Template="{StaticResource Btn2}"/>
         </StackPanel>

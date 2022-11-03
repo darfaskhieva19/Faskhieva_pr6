@@ -167,7 +167,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SeasonTicket_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SeasonTicket" Type="Self.SeasonTicket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
@@ -179,7 +181,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Training_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Training" Type="Self.Training" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
@@ -470,7 +474,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SeasonTicket_Group">
-          <End Type="Model.Group" Role="Group" Multiplicity="1" />
+          <End Type="Model.Group" Role="Group" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model.SeasonTicket" Role="SeasonTicket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
@@ -482,7 +488,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Training_Group">
-          <End Type="Model.Group" Role="Group" Multiplicity="1" />
+          <End Type="Model.Group" Role="Group" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model.Training" Role="Training" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
