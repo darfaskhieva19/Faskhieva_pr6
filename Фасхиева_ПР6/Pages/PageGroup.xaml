@@ -11,35 +11,33 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
-            <RowDefinition Height="1.5*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
-            <ListView Name="lGroup" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="#F4FAEE">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel HorizontalAlignment="Center"></WrapPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Padding="1" CornerRadius="5" BorderThickness="0.5" BorderBrush="Black">
-                            <Grid Name="gridM" Width="310" Height="200" Background="{Binding ColorCost}">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding NameGroup}" Style="{StaticResource TBlock}" HorizontalAlignment="Center"/>
-                                    <TextBlock TextWrapping="Wrap" Name="tbTraning" Uid="{Binding idGroup}"  Loaded="tbTraning_Loaded" Style="{StaticResource TBGroup}"/>
-                                    <TextBlock Text="{Binding PriceGroup}"  Style="{StaticResource TBGroup}"/>
-                                    <TextBlock Uid="{Binding idGroup}" Name="tbCount" Loaded="tbCount_Loaded"  Style="{StaticResource TBGroup}"/>
-                                    <TextBlock Uid="{Binding idGroup}" Name="tbCost" Loaded="tbCost_Loaded"  Style="{StaticResource TBGroup}"/>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
+        <ListView Name="lGroup" Height="390" Background="#F4FAEE" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="1" CornerRadius="5" BorderThickness="0.5" BorderBrush="Black">
+                        <Grid Name="gridM" Width="355" Height="200" Background="{Binding ColorCost}">
+                            <StackPanel>
+                                <TextBlock Text="{Binding NameGroup}" Style="{StaticResource TBlock}" HorizontalAlignment="Center"/>
+                                <TextBlock TextWrapping="Wrap" Name="tbTraning" Uid="{Binding idGroup}"  Loaded="tbTraning_Loaded" Style="{StaticResource TBGroup}"/>
+                                <TextBlock Text="{Binding PriceGroup}"  Style="{StaticResource TBGroup}"/>
+                                <TextBlock Uid="{Binding idGroup}" Name="tbCount" Loaded="tbCount_Loaded"  Style="{StaticResource TBGroup}"/>
+                                <TextBlock Uid="{Binding idGroup}" Name="tbCost" Loaded="tbCost_Loaded"  Style="{StaticResource TBGroup}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <StackPanel Grid.Row="1" Margin="2" Background="#E6F8D5" Orientation="Horizontal">
             <Button Name="btnBack" Content="Вернуться в меню" Click="btnBack_Click" Template="{StaticResource Btn2}"/>
-            <Button Name="btnAdd" Content="Добавить" Click="btnAdd_Click" Template="{StaticResource Btn2}"/>
+            <Button Name="btnAdd" Content="Добавить запись" Click="btnAdd_Click" Template="{StaticResource Btn2}"/>
         </StackPanel>
     </Grid>
 </Page>

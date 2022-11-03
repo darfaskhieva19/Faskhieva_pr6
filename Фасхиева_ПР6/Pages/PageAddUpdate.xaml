@@ -13,13 +13,19 @@
             <RowDefinition Height="8*"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
+        <StackPanel>
+            <TextBlock Text="Добавление новой записи" Style="{StaticResource Header}"/>
+        </StackPanel>
+        <WrapPanel HorizontalAlignment="Center" Margin="60" Height="190">
             <StackPanel>
-                <TextBlock Text="Добавление" Style="{StaticResource Header}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
                 <GroupBox Header="Группа" Width="250" Style="{StaticResource gpStyle}">
                     <TextBox Name="tbGroup"/>
+                </GroupBox>
+                <GroupBox Header="Цена одного занятия" Width="250" Style="{StaticResource gpStyle}">
+                    <TextBox Name="tbPrice"/>
+                </GroupBox>
+                <GroupBox Header="Количество посещений" Width="250" Style="{StaticResource gpStyle}">
+                    <TextBox Name="tbCount"/>
                 </GroupBox>
             </StackPanel>
             <StackPanel>
@@ -34,21 +40,9 @@
                     <TextBox Name="tbPatronimyc"/>
                 </GroupBox>
             </StackPanel>
-            <StackPanel>
-                <GroupBox Header="Цена" Width="250" Style="{StaticResource gpStyle}">
-                <TextBox Name="tbPrice"/>
-                </GroupBox>
-            </StackPanel>
-            <StackPanel>
-                <GroupBox Header="Количество посещений" Width="250" Style="{StaticResource gpStyle}">
-                <TextBox Name="tbCount"/> 
-                </GroupBox>
-            </StackPanel>
-            <StackPanel>
-                <GroupBox Header="Стоимость за месяц"  Width="250" Style="{StaticResource gpStyle}">
-                <TextBox Name="tbCost"/>
-                </GroupBox>
-            </StackPanel>
+        </WrapPanel>
+        <StackPanel>
+            <Button Name="btnBack" Content="Назад"/>
         </StackPanel>
     </Grid>
 </Page>
