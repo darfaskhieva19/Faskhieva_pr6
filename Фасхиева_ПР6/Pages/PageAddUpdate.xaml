@@ -5,44 +5,78 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Фасхиева_ПР6.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="550" d:DesignWidth="800"
       Title="PageAddUpdate">
 
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel>
-            <TextBlock Text="Добавление новой записи" Style="{StaticResource Header}"/>
-        </StackPanel>
-        <WrapPanel HorizontalAlignment="Center" Margin="60" Height="190">
-            <StackPanel>
-                <GroupBox Header="Группа" Width="250" Style="{StaticResource gpStyle}">
-                    <TextBox Name="tbGroup"/>
-                </GroupBox>
-                <GroupBox Header="Цена одного занятия" Width="250" Style="{StaticResource gpStyle}">
-                    <TextBox Name="tbPrice"/>
-                </GroupBox>
-                <GroupBox Header="Количество посещений" Width="250" Style="{StaticResource gpStyle}">
-                    <TextBox Name="tbCount"/>
-                </GroupBox>
+        <ScrollViewer>
+            <StackPanel Grid.Row="0">
+                <StackPanel>
+                    <TextBlock Text="Добавление записи" Style="{StaticResource Header}"/>
+                </StackPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <StackPanel>
+                        <GroupBox Header="Группа" Width="250" Style="{StaticResource gpStyle}">
+                            <TextBox Name="tbGroup"/>
+                        </GroupBox>
+                        <GroupBox Header="Цена одного занятия" Width="250" Style="{StaticResource gpStyle}">
+                            <TextBox Name="tbPrice"/>
+                        </GroupBox>
+                        <GroupBox Margin="0 10 0 10" Header="Выберите клиента" Width="250" Style="{StaticResource gpStyle}">
+                            <ComboBox Name="cbClient" IsEditable="True" IsReadOnly="True"/>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel>
+                        <GroupBox Header="Количество посещений" Width="250" Style="{StaticResource gpStyle}">
+                            <TextBox Name="tbCount"/>
+                        </GroupBox>
+                        <GroupBox Margin="0 10 0 10" Header="Выберите инструктора" Width="250" Style="{StaticResource gpStyle}">
+                            <ComboBox Name="cbInstructor" IsEditable="True" IsReadOnly="True"/>
+                        </GroupBox>
+                        <Button Name="btnAddInstr" Content="Новый инструктор" Click="btnAddInstr_Click" Template="{StaticResource Btn2}"/>
+                    </StackPanel>
+                </WrapPanel>
+
+                <WrapPanel HorizontalAlignment="Center" Name="wpNewInstructors" Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock Text="Добавление инструтора" Style="{StaticResource Header}"/>
+                        <StackPanel>
+                            <GroupBox Header="Фамилия" Width="250" Style="{StaticResource gpStyle}">
+                                <TextBox Name="tbSurname"/>
+                            </GroupBox>
+                            <GroupBox Header="Имя" Width="250" Style="{StaticResource gpStyle}">
+                                <TextBox Name="tbName"/>
+                            </GroupBox>
+                            <GroupBox Header="Отчество" Width="250" Style="{StaticResource gpStyle}">
+                                <TextBox Name="tbPatronimyc"/>
+                            </GroupBox>
+                            <GroupBox Header="Телефон" Style="{StaticResource gpStyle}">
+                                <TextBox Name="Phone"/>
+                            </GroupBox>
+                        </StackPanel>
+                        <StackPanel>
+                            <GroupBox Margin="0 10 0 10" Header="Выберите образование" Width="250" Style="{StaticResource gpStyle}">
+                                <ComboBox Name="cbEducation" IsEditable="True" IsReadOnly="True"/>
+                            </GroupBox>
+                            <GroupBox Margin="0 10 0 10" Header="Выберите категорию" Width="250" Style="{StaticResource gpStyle}">
+                                <ComboBox Name="cbCategory" IsEditable="True" IsReadOnly="True"/>
+                            </GroupBox>
+                            <GroupBox Margin="0 10 0 10" Header="Выберите должность" Width="250" Style="{StaticResource gpStyle}">
+                                <ComboBox Name="cbPost" IsEditable="True" IsReadOnly="True"/>
+                            </GroupBox>
+                        </StackPanel>
+                    </StackPanel>
+                </WrapPanel>
             </StackPanel>
-            <StackPanel>
-                <TextBlock Text="Данные инструктора"/>
-                <GroupBox Header="Фамилия" Width="250" Style="{StaticResource gpStyle}">
-                    <TextBox Name="tbSurname"/>
-                </GroupBox>
-                <GroupBox Header="Имя" Width="250" Style="{StaticResource gpStyle}">
-                    <TextBox Name="tbName"/>
-                </GroupBox>
-                <GroupBox Header="Отчество" Width="250" Style="{StaticResource gpStyle}">
-                    <TextBox Name="tbPatronimyc"/>
-                </GroupBox>
-            </StackPanel>
-        </WrapPanel>
-        <StackPanel>
-            <Button Name="btnBack" Content="Назад"/>
+        </ScrollViewer>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Name="btBack" Content="Вернуться в меню" Click="btBack_Click" Template="{StaticResource Btn2}"/>
+            <Button Name="btAdd" Content="Добавить" Click="btAdd_Click" Template="{StaticResource Btn2}"/>
         </StackPanel>
     </Grid>
 </Page>

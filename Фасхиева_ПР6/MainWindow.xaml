@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#E6F8D5">
             <Image Source="\Picture\logo.png" Margin="5"/>
-            <TextBlock Text="Центр спортивного отдыха" Style="{StaticResource Header}"/>
+            <TextBlock Text="Центр спортивного отдыха" Style="{StaticResource HeaderM}"/>
             <StackPanel Margin="50, 10,0,0">
                 <Button Name="btAuto" Content="Авторизироваться" Click="btAuto_Click" Template="{StaticResource Btn}"/>
                 <Button Name="btReg" Content="Зарегистироваться" Click="btReg_Click" Template="{StaticResource Btn}"/>

@@ -24,5 +24,20 @@ namespace Фасхиева_ПР6.Pages
         {
             InitializeComponent();
         }
+
+        private void btnAddInstr_Click(object sender, RoutedEventArgs e)
+        {
+            wpNewInstructors.Visibility = Visibility.Visible;
+        }
+
+        private void btBack_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
