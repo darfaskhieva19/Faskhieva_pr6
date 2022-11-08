@@ -67,6 +67,8 @@
     <Compile Include="Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Clients.cs" />
+    <Compile Include="Classes\Instructors.cs" />
     <Compile Include="Classes\SeasonTicket.cs" />
     <Compile Include="Clients.cs">
       <DependentUpon>Model1.tt</DependentUpon>
