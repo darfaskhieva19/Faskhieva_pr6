@@ -78,5 +78,15 @@ namespace Фасхиева_ПР6
         {
             ClassFrame.frameL.Navigate(new PageAddUpdate());
         }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

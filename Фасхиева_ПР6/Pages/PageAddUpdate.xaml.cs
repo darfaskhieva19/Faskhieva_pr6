@@ -28,15 +28,15 @@ namespace Фасхиева_ПР6.Pages
             listFild();
             grAdd = true;
         }
-        public void listFild()
+        public void listFild() // метод для заполнения списков
         {
             cbInstructor.ItemsSource = DataBase.bd.Instructors.ToList();
             cbInstructor.SelectedValuePath = "idInstruct";
             cbInstructor.DisplayMemberPath = "NameInst";
 
-            cbClient.ItemsSource = DataBase.bd.Clients.ToList();
-            cbClient.SelectedValuePath = "idClient";
-            cbClient.DisplayMemberPath = "NameClient";
+            //cbClient.ItemsSource = DataBase.bd.Clients.ToList();
+            //cbClient.SelectedValuePath = "idClient";
+            //cbClient.DisplayMemberPath = "NameClient";
 
             cbEducation.ItemsSource = DataBase.bd.Education.ToList();
             cbEducation.SelectedValuePath = "idEducation";
@@ -50,6 +50,13 @@ namespace Фасхиева_ПР6.Pages
             cbPost.SelectedValuePath = "idPost";
             cbPost.DisplayMemberPath = "post";
         }
+        //public PageAddUpdate(Group group) //редактирование
+        //{
+        //    InitializeComponent();
+        //    listFild();
+        //    GROUP = group;
+        //    grAdd = false;
+        //}
 
         private void btnAddInstr_Click(object sender, RoutedEventArgs e)
         {
@@ -64,73 +71,108 @@ namespace Фасхиева_ПР6.Pages
 
         private void btAdd_Click(object sender, RoutedEventArgs e)
         {
-            try
+            // try
+            //{
+
+            if (cbInstructor.Text == "")
             {
-                if(grAdd == true)
-                {
-                    GROUP = new Group();
-                }
-                GROUP.title = tbGroup.Text;
-                GROUP.price = Convert.ToInt32(tbPrice.Text);
-                if(grAdd == true)
-                {
-                    DataBase.bd.Group.Add(GROUP);
-                }
-               
-                if(cbInstructor.SelectedValue == null)
-                {
-                    Instructors instructors = new Instructors()
-                    {
-                        surname = tbSurname.Text,
-                        name = tbName.Text,
-                        patronimyc = tbPatronimyc.Text,
-                        phone = tbPhone.Text,
-                        idCategory = cbCategory.SelectedIndex + 1,
-                        idEducation = cbEducation.SelectedIndex + 1,
-                        idPost = cbPost.SelectedIndex + 1,
-                    };
-                    if (grAdd == true)
-                    {
-                        DataBase.bd.Group.Add(GROUP);
-                    }                   
-                }
-                else
-                {
-                    List<Instructors> INST = DataBase.bd.Instructors.Where(x => GROUP.idGroup == x.idInstruct).ToList();
-                    if(INST.Count > 0)
-                    {
-                        foreach (Instructors inst in INST)
-                        {
-                            DataBase.bd.Instructors.Remove(inst);
-                        }
-                    }
-                    foreach (Instructors inst in INST)
-                    {
-                        Instructors instructors = new Instructors()
-                        {
-                            surname = tbSurname.Text,
-                            name = tbName.Text,
-                            patronimyc = tbPatronimyc.Text,
-                            phone = tbPhone.Text,
-                            idCategory = cbCategory.SelectedIndex + 1,
-                            idEducation = cbEducation.SelectedIndex + 1,
-                            idPost = cbPost.SelectedIndex + 1,
-                        };
-                        DataBase.bd.Instructors.Add(instructors);
-                    }
-                    if (grAdd == true)
-                    {
-                        DataBase.bd.Group.Add(GROUP);
-                    }
-                }
-                DataBase.bd.SaveChanges();
-                MessageBox.Show("Успешное добавление!");
-               // ClassFrame.frameL.Navigate(new ());
+                MessageBox.Show("Инструктор должен быть выбран!");
+                return;
             }
-            catch
+            if (cbCategory.Text == "")
             {
-                MessageBox.Show("Что-то пошло не так..");
+                MessageBox.Show("Категория должна быть выбрана!");
+                return;
             }
+            if (cbEducation.Text == "")
+            {
+                MessageBox.Show("Образование должно быть выбрано!");
+                return;
+            }
+            if (cbPost.Text == "")
+            {
+                MessageBox.Show("Должность инструктора должна быть выбрана!");
+                return;
+            }
+
+
+//            if (grAdd == true)
+//            {
+//                GROUP = new Group();
+//            }
+//            GROUP.title = tbGroup.Text;
+//            GROUP.price = Convert.ToInt32(tbPrice.Text);
+
+//            if (grAdd == true)
+//            {
+//                DataBase.bd.Group.Add(GROUP);
+//            }
+
+//            if (cbInstructor.SelectedValue == null)
+//            {
+//                Instructors instructor = new Instructors()
+//                {
+//                    surname = tbSurname.Text,
+//                    name = tbName.Text,
+//                    patronimyc = tbPatronimyc.Text,
+//                    phone = tbPhone.Text,
+//                    idCategory = cbCategory.SelectedIndex + 1,
+//                    idEducation = cbEducation.SelectedIndex + 1,
+//                    idPost = cbPost.SelectedIndex + 1,
+//                };
+//                if (grAdd == true)
+//                {
+//                    DataBase.bd.Group.Add(GROUP);
+//                }
+//                SeasonTicket ticket = new SeasonTicket()
+//                {
+//                    count = Convert.ToInt32(tbCount.Text),
+//                    idGroup = GROUP.idGroup
+//                    //idClient 
+//                    //cost = GROUP.price * ticket.count
+//                };
+//                if (grAdd == true)
+//                {
+//                    DataBase.bd.Group.Add(GROUP);
+//                }
+//            }
+//            else
+//            {
+//                List<Instructors> INST = DataBase.bd.Instructors.Where(x => GROUP.idGroup == x.idInstruct).ToList();
+//                if (INST.Count > 0)
+//                {
+//                    foreach (Instructors inst in INST)
+//                    {
+//                        DataBase.bd.Instructors.Remove(inst);
+//                    }
+//                }
+//                foreach (Instructors inst in INST)
+//                {
+//                    Instructors instructors = new Instructors()
+//                    {
+//                        surname = tbSurname.Text,
+//                        name = tbName.Text,
+//                        patronimyc = tbPatronimyc.Text,
+//                        phone = tbPhone.Text,
+//                        idCategory = cbCategory.SelectedIndex + 1,
+//                        idEducation = cbEducation.SelectedIndex + 1,
+//                        idPost = cbPost.SelectedIndex + 1,
+//                    };
+//                    DataBase.bd.Instructors.Add(instructors);
+//                }
+//                if (grAdd == true)
+//                {
+//                    DataBase.bd.Group.Add(GROUP);
+//                }
+//            }
+//                DataBase.bd.SaveChanges();
+//MessageBox.Show("Успешное добавление!");
+//ClassFrame.frameL.Navigate(new PageGroup());
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Что-то пошло не так..");
+            //}
         }
     }
 }
