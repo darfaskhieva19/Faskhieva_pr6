@@ -54,20 +54,22 @@
                         <GroupBox Header="Имя" Width="250" Style="{StaticResource gpStyle}">
                             <TextBox Name="tbName"/>
                         </GroupBox>
+                        <GroupBox Margin="0 10 0 10" Header="Выберите образование" Width="250" Style="{StaticResource gpStyle}">
+                            <ComboBox Name="cbEducation" IsEditable="True" IsReadOnly="True"/>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel>
                         <GroupBox Header="Отчество" Width="250" Style="{StaticResource gpStyle}">
                             <TextBox Name="tbPatronimyc"/>
                         </GroupBox>
                         <GroupBox Header="Телефон" Style="{StaticResource gpStyle}">
                             <TextBox Name="tbPhone"/>
                         </GroupBox>
-                    </StackPanel>
-                    <StackPanel>
-                        <GroupBox Margin="0 10 0 10" Header="Выберите образование" Width="250" Style="{StaticResource gpStyle}">
-                            <ComboBox Name="cbEducation" IsEditable="True" IsReadOnly="True"/>
-                        </GroupBox>
                         <GroupBox Margin="0 10 0 10" Header="Выберите категорию" Width="250" Style="{StaticResource gpStyle}">
                             <ComboBox Name="cbCategory" IsEditable="True" IsReadOnly="True"/>
                         </GroupBox>
+                    </StackPanel>
+                    <StackPanel>
                         <GroupBox Margin="0 10 0 10" Header="Выберите должность" Width="250" Style="{StaticResource gpStyle}">
                             <ComboBox Name="cbPost" IsEditable="True" IsReadOnly="True"/>
                         </GroupBox>

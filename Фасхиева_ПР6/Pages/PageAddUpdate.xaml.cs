@@ -66,13 +66,17 @@ namespace Фасхиева_ПР6.Pages
         {
             try
             {
-                if(grAdd == false)
+                if(grAdd == true)
                 {
                     GROUP = new Group();
                 }
                 GROUP.title = tbGroup.Text;
                 GROUP.price = Convert.ToInt32(tbPrice.Text);
-                DataBase.bd.Group.Add(GROUP);
+                if(grAdd == true)
+                {
+                    DataBase.bd.Group.Add(GROUP);
+                }
+               
                 if(cbInstructor.SelectedValue == null)
                 {
                     Instructors instructors = new Instructors()
@@ -85,9 +89,43 @@ namespace Фасхиева_ПР6.Pages
                         idEducation = cbEducation.SelectedIndex + 1,
                         idPost = cbPost.SelectedIndex + 1,
                     };
-                    DataBase.bd.Instructors.Add(instructors);
+                    if (grAdd == true)
+                    {
+                        DataBase.bd.Group.Add(GROUP);
+                    }                   
                 }
-
+                else
+                {
+                    List<Instructors> INST = DataBase.bd.Instructors.Where(x => GROUP.idGroup == x.idInstruct).ToList();
+                    if(INST.Count > 0)
+                    {
+                        foreach (Instructors inst in INST)
+                        {
+                            DataBase.bd.Instructors.Remove(inst);
+                        }
+                    }
+                    foreach (Instructors inst in INST)
+                    {
+                        Instructors instructors = new Instructors()
+                        {
+                            surname = tbSurname.Text,
+                            name = tbName.Text,
+                            patronimyc = tbPatronimyc.Text,
+                            phone = tbPhone.Text,
+                            idCategory = cbCategory.SelectedIndex + 1,
+                            idEducation = cbEducation.SelectedIndex + 1,
+                            idPost = cbPost.SelectedIndex + 1,
+                        };
+                        DataBase.bd.Instructors.Add(instructors);
+                    }
+                    if (grAdd == true)
+                    {
+                        DataBase.bd.Group.Add(GROUP);
+                    }
+                }
+                DataBase.bd.SaveChanges();
+                MessageBox.Show("Успешное добавление!");
+               // ClassFrame.frameL.Navigate(new ());
             }
             catch
             {
