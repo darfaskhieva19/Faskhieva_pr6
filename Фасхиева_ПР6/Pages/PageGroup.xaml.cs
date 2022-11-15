@@ -78,15 +78,21 @@ namespace Фасхиева_ПР6
         {
             ClassFrame.frameL.Navigate(new PageAddUpdate());
         }
-
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private void btnDelete_Click(object sender, RoutedEventArgs e) //кнопка удаления группы
         {
-
+            Button btn = (Button)sender;
+            int index = Convert.ToInt32(btn.Uid);
+            Group group = DataBase.bd.Group.FirstOrDefault(x => x.idGroup == index);
+            DataBase.bd.Group.Remove(group);
+            DataBase.bd.SaveChanges();
+            ClassFrame.frameL.Navigate(new PageGroup()); //перезагрузка страницы
         }
-
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        private void btnUpdate_Click(object sender, RoutedEventArgs e) //переход на страницу редактирования данных
         {
-
+            Button btn = (Button)sender;
+            int index = Convert.ToInt32(btn.Uid);
+            Group group = DataBase.bd.Group.FirstOrDefault(x=>x.idGroup == index);
+            //ClassFrame.frameL.Navigate(new PageAddUpdate(group));
         }
     }
 }

@@ -28,23 +28,23 @@
                         <GroupBox Header="Цена одного занятия" Width="250" Style="{StaticResource gpStyle}">
                             <TextBox Name="tbPrice"/>
                         </GroupBox>
-                        <GroupBox Margin="0 10 0 10" Header="Выберите клиента" Width="250" Style="{StaticResource gpStyle}">
-                            <ComboBox Name="cbClient" IsEditable="True" IsReadOnly="True"/>
+                        <GroupBox Margin="0 10 0 10" Header="Выберите инструктора" Width="250" Style="{StaticResource gpStyle}">
+                            <ComboBox Name="cbInstructor" IsEditable="True" IsReadOnly="True"/>
                         </GroupBox>
                     </StackPanel>
                     <StackPanel>
                         <GroupBox Header="Количество посещений" Width="250" Style="{StaticResource gpStyle}">
                             <TextBox Name="tbCount"/>
                         </GroupBox>
-                        <GroupBox Margin="0 10 0 10" Header="Выберите инструктора" Width="250" Style="{StaticResource gpStyle}">
-                            <ComboBox Name="cbInstructor" IsEditable="True" IsReadOnly="True"/>
+                        <GroupBox Margin="0 10 0 10" Header="Выберите клиента" Width="250" Style="{StaticResource gpStyle}">
+                            <ComboBox Name="cbClient" IsEditable="True" IsReadOnly="True"/>
                         </GroupBox>
-                        <Button Name="btnAddInstr" Content="Новый инструктор" Click="btnAddInstr_Click" Template="{StaticResource Btn2}"/>
+                        <Image Name="imAdd" Source="\Picture\icon_plus.png" Width="40" Height="40" Margin="8" PreviewMouseUp="imAdd_PreviewMouseUp"/>
                     </StackPanel>
                 </WrapPanel>
                 
                 <StackPanel HorizontalAlignment="Center" Name="spNewInstructors" Visibility="Collapsed">
-                    <TextBlock Text="Добавление инструтора" Style="{StaticResource Header}" />
+                    <TextBlock Text="Добавление инструктора" Style="{StaticResource Header}" />
                 </StackPanel>
                 <WrapPanel HorizontalAlignment="Center" Name="wpNewInstructors" Visibility="Collapsed">
                     <StackPanel>

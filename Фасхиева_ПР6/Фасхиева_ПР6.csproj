@@ -112,6 +112,9 @@
     <Compile Include="Pages\PageGroup.xaml.cs">
       <DependentUpon>PageGroup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PagePersonal.xaml.cs">
+      <DependentUpon>PagePersonal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PageUser.xaml.cs">
       <DependentUpon>PageUser.xaml</DependentUpon>
     </Compile>
@@ -164,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\PageGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PagePersonal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +228,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Picture\image.png" />
+    <Resource Include="Picture\icon_plus.png" />
     <Resource Include="Picture\logo.png" />
   </ItemGroup>
   <ItemGroup>

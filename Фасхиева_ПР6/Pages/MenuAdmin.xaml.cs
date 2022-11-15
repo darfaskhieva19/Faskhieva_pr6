@@ -34,5 +34,10 @@ namespace Фасхиева_ПР6
         {
             ClassFrame.frameL.Navigate(new PageAdmin());
         }
+
+        private void btPersonal_Click(object sender, RoutedEventArgs e)
+        {
+            //ClassFrame.frameL.Navigate(new PagePersonal());
+        }
     }
 }

@@ -13,6 +13,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button Name="btUsers" Content="Пользователи" Click="btUsers_Click" Template="{StaticResource Btn3}"/>
                 <Button Name="btGroup" Content="Группы" Click="btGroup_Click" Template="{StaticResource Btn3}"/>
+                <Button Name="btPersonal" Content="Личный кабинет" Click="btPersonal_Click" Template="{StaticResource Btn3}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
