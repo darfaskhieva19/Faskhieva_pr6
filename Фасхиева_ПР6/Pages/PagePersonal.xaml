@@ -9,11 +9,48 @@
       Title="PagePersonal">
 
     <Grid>
-        <StackPanel>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
         <TextBlock Text="Личный кабинет" Style="{StaticResource Header}"/>
-        </StackPanel>
-        <StackPanel>
-            <Image Source="\Picture\image.png"/>
-        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>                
+                <Image Source="\Picture\image.png" Height="250" Width="250"/>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Name="btnChooseImage" Content="Изменить картинку" Click="btnChooseImage_Click"/>                   
+                </StackPanel>
+            </Grid>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel>
+                        <TextBlock Name="tbSurname" Text="Фамилия: " Style="{StaticResource TBlock}"/>
+                        <TextBlock Name="tbName" Text="Имя: " Style="{StaticResource TBlock}"/>
+                        <TextBlock Name="tbPatronimyc" Text="Отчество: " Style="{StaticResource TBlock}"/>                        
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Name="tbGender" Text="Пол: " Style="{StaticResource TBlock}"/>
+                        <TextBlock Name="tbRole" Text="Роль: " Style="{StaticResource TBlock}"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Name="tbPhone" Text="Телефон: " Style="{StaticResource TBlock}"/>
+                        <TextBlock Name="tbBirthday" Text="Дата рождения: " Style="{StaticResource TBlock}"/>
+                    </StackPanel>
+                </WrapPanel>
+                <Button Name="btnLogPas" Content="Сменить логин и пароль" Click="btnLoginPassword_Click"/>
+                <Button Name="btnUpdate" Content="Редактировать личные данные" Click="btnUpdate_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
+

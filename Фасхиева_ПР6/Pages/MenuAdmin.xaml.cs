@@ -37,7 +37,7 @@ namespace Фасхиева_ПР6
 
         private void btPersonal_Click(object sender, RoutedEventArgs e)
         {
-            //ClassFrame.frameL.Navigate(new PagePersonal());
+            ClassFrame.frameL.Navigate(new Pages.PagePersonal());
         }
     }
 }
