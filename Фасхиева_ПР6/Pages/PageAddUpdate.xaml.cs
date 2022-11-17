@@ -68,13 +68,13 @@ namespace Фасхиева_ПР6.Pages
         {
             //try
             //{
-            if (grAdd == false)
+            if (grAdd == true)
             {
                 GROUP = new Group();
             }
             GROUP.title = tbGroup.Text;
             GROUP.price = Convert.ToInt32(tbPrice.Text);
-            if (grAdd == false)
+            if (grAdd == true)
             {
                 DataBase.bd.Group.Add(GROUP);
             }
@@ -84,29 +84,32 @@ namespace Фасхиева_ПР6.Pages
                 count = Convert.ToInt32(tbCount.Text),
                 idGroup = GROUP.idGroup,
                 idClient = cbClient.SelectedIndex + 1,
-                //cost = GROUP.price * count
+                cost = GROUP.price * Convert.ToInt32(tbCount.Text)
             };
-            if (grAdd == false)
+            if (grAdd == true)
             {
                 DataBase.bd.SeasonTicket.Add(ticket);
             }
 
             if (cbInstructor.SelectedValue == null)
             {
-                Instructors instructor = new Instructors()
+                Training training = new Training()
                 {
-                    surname = tbSurname.Text,
-                    name = tbName.Text,
-                    patronimyc = tbPatronimyc.Text,
-                    phone = tbPhone.Text,
-                    idCategory = cbCategory.SelectedIndex + 1,
-                    idEducation = cbEducation.SelectedIndex + 1,
-                    idPost = cbPost.SelectedIndex + 1,
+                    //idInstruct = Convert.ToInt32(tbSurname.Text + tbName.Text + tbPatronimyc.Text),
+                    //idGroup = Convert.ToInt32(tbGroup.Text)
+
+                    //surname = tbSurname.Text,
+                    //name = tbName.Text,
+                    //patronimyc = tbPatronimyc.Text,
+                    //phone = tbPhone.Text,
+                    //idCategory = cbCategory.SelectedIndex + 1,
+                    //idEducation = cbEducation.SelectedIndex + 1,
+                    //idPost = cbPost.SelectedIndex + 1,
                 };
-                if (grAdd == true)
-                {
-                    DataBase.bd.Group.Add(GROUP);
-                }
+                //if (grAdd == true)
+                //{
+                //    DataBase.bd.Training.Add(training);
+                //}
             }
             else
             {
