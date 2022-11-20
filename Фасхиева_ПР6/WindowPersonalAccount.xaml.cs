@@ -23,5 +23,15 @@ namespace Фасхиева_ПР6
         {
             InitializeComponent();
         }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

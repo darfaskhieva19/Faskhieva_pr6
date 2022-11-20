@@ -5,8 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Фасхиева_ПР6"
         mc:Ignorable="d"
-        Title="WindowPersonalAccount" Height="450" Width="800">
+        Title="WindowPersonalAccount" Height="370" Width="550">
     <Grid>
-        
+        <StackPanel>
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Text="Изменение личных данных" Style="{StaticResource Header}"/>
+        </StackPanel>
+            <WrapPanel HorizontalAlignment="Center" Margin="10">
+                <StackPanel>
+                    <GroupBox Header="Фамилия" Style="{StaticResource gbStyle}">
+                        <TextBox Name="tSurname"/>
+                    </GroupBox>
+                    <GroupBox Header="Имя" Style="{StaticResource gbStyle}">
+                        <TextBox Name="tName"/>
+                    </GroupBox>
+                    <GroupBox Header="Отчество" Style="{StaticResource gbStyle}">
+                        <TextBox Name="tPatronimyc"/>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel>
+                    <GroupBox Header="Телефон" Style="{StaticResource gbStyle}">
+                        <TextBox Name="tPhone"/>
+                    </GroupBox>
+                    <GroupBox Header="День рождения" Style="{StaticResource gbStyle}">
+                        <DatePicker Name="Birthday"/>
+                    </GroupBox>
+                    <GroupBox Header="Пол" Style="{StaticResource gbStyle}" Height="60">
+                        <StackPanel>
+                            <RadioButton Name="RBWoman">Женский</RadioButton>
+                            <RadioButton Name="RBMan">Мужской</RadioButton>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </WrapPanel>
+            <WrapPanel HorizontalAlignment="Center">
+                <Button Name="btnUpdate" Content="Изменить данные" Margin="5,0,10,0" Template="{StaticResource Btn2}" Click="btnUpdate_Click"/>
+                <Button Name="btnBack" Content="Отмена" Margin="10,0,10,0" Template="{StaticResource Btn1}" Click="btnBack_Click"/>
+            </WrapPanel>
+        </StackPanel>
     </Grid>
 </Window>

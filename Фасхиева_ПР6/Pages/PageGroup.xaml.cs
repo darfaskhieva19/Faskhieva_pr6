@@ -68,7 +68,7 @@ namespace Фасхиева_ПР6
             string str = "";
             foreach (Training t in TR)
             {
-                str += t.Instructors.surname + " " + t.Instructors.name + " " + t.Instructors.patronimyc;
+                str += t.Instructors.surname + " " + t.Instructors.name + " " + t.Instructors.patronimyc + "\n";
             }
 
             tb.Text = "Инструктор: " + str.Substring(0, str.Length);
@@ -92,7 +92,7 @@ namespace Фасхиева_ПР6
             Button btn = (Button)sender;
             int index = Convert.ToInt32(btn.Uid);
             Group group = DataBase.bd.Group.FirstOrDefault(x=>x.idGroup == index);
-            //ClassFrame.frameL.Navigate(new PageAddUpdate(group));
+            ClassFrame.frameL.Navigate(new PageAddUpdate(group));
         }
     }
 }

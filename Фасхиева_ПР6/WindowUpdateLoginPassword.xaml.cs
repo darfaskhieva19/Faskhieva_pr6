@@ -23,5 +23,10 @@ namespace Фасхиева_ПР6
         {
             InitializeComponent();
         }
+
+        private void tbUpdatePass_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,7 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Runtime.Remoting.Contexts;
+using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Фасхиева_ПР6.Pages
 {
@@ -20,134 +27,154 @@ namespace Фасхиева_ПР6.Pages
     /// </summary>
     public partial class PageAddUpdate : Page
     {
-        Group GROUP;
-        bool grAdd = false;
-        public PageAddUpdate()
+        Group GROUP; // объект, в котором будут хранится данные о новой или отредактированной группе
+        bool grAdd = false; // для определения, создаем новый объект или редактируем старый
+        private List<Group> group;
+        public PageAddUpdate()  // конструктор для создания новой группы (без аргументов)       
         {
             InitializeComponent();
             listFild();
-            grAdd = true;
+            grAdd = false;
         }
         public void listFild() // метод для заполнения списков
         {
-            cbInstructor.ItemsSource = DataBase.bd.Instructors.ToList();
-            cbInstructor.SelectedValuePath = "idInstruct";
-            cbInstructor.DisplayMemberPath = "NameInst";
+            //cbClient.ItemsSource = DataBase.bd.Clients.ToList();
+            //cbClient.SelectedValuePath = "idClient";
+            //cbClient.DisplayMemberPath = "NameClient";
 
-            cbClient.ItemsSource = DataBase.bd.Clients.ToList();
-            cbClient.SelectedValuePath = "idClient";
-            cbClient.DisplayMemberPath = "NameClient";
-
-            cbEducation.ItemsSource = DataBase.bd.Education.ToList();
-            cbEducation.SelectedValuePath = "idEducation";
-            cbEducation.DisplayMemberPath = "education1";
-
-            cbCategory.ItemsSource = DataBase.bd.Category.ToList();
-            cbCategory.SelectedValuePath = "idCategory";
-            cbCategory.DisplayMemberPath = "category1";
-
-            cbPost.ItemsSource = DataBase.bd.Posts.ToList();
-            cbPost.SelectedValuePath = "idPost";
-            cbPost.DisplayMemberPath = "post";
+            lbInstructors.ItemsSource = DataBase.bd.Instructors.ToList();
+            lbClients.ItemsSource = DataBase.bd.Clients.ToList();
         }
-        //public PageAddUpdate(Group group) //редактирование
-        //{
-        //    InitializeComponent();
-        //    this.User = user;
-        //    listFild();
-        //    GROUP = group;
-        //    grAdd = false;
-        //}
-
-        private void btBack_Click(object sender, RoutedEventArgs e)
+       
+        public PageAddUpdate(Group group)  // конструктор для редактирования данных о группе ( с аргументом)
         {
-            ClassFrame.frameL.Navigate(new PageGroup());
+            InitializeComponent();
+
+            listFild();
+            GROUP = group;
+            grAdd = true;
+            tbGroup.Text = group.NameGroup; //вывод названия группы
+            tbPrice.Text = Convert.ToString(group.price); //вывод цены за одно занятие
+
+            //int str = 0;
+            //foreach (SeasonTicket st in ST)
+            //{
+            //    str = Convert.ToInt32(st.idClient);
+            //}
+            //cbClient.SelectedIndex = str; //вывод клиента
+
+            List<SeasonTicket> ST = DataBase.bd.SeasonTicket.Where(x => x.idGroup == group.idGroup).ToList(); // находим клиента для той группы, которую мы редактируем
+            foreach (Clients client in lbClients.Items) // цикл для выделения клиента группы в общем списке:
+            {
+                if (ST.FirstOrDefault(x => x.idClient == client.idClient) != null)
+                {
+                    lbClients.SelectedItems.Add(client);
+                }
+            }
+            int k = 0;
+            foreach (SeasonTicket t in ST)
+            {
+                k = Convert.ToInt32(t.count);                
+            }
+            tbCount.Text = "" + k; //вывод количества посещений
+
+            // находим инструктора для той группы, которую мы редактируем
+            List<Training> TR = DataBase.bd.Training.Where(x=>x.idGroup==group.idGroup).ToList();
+            // цикл для выделения инструктора групп в общем списке:
+            foreach (Instructors instructors in lbInstructors.Items)
+            {
+                if (TR.FirstOrDefault(x => x.idInstruct == instructors.idInstruct) != null)
+                {
+                    lbInstructors.SelectedItems.Add(instructors);
+                }
+            }
+            btAdd.Content = "Сохранить";
+            tbHeader.Text = "Изменение данных";            
+        }
+
+        public PageAddUpdate(List<Group> group)  
+        {
+            this.group = group;
         }
 
         private void btAdd_Click(object sender, RoutedEventArgs e)
         {
             //try
             //{
-            if (grAdd == true)
+            if (grAdd == false)
             {
                 GROUP = new Group();
             }
+            //заполняем поля таблицы Group
             GROUP.title = tbGroup.Text;
             GROUP.price = Convert.ToInt32(tbPrice.Text);
-            if (grAdd == true)
+            if (grAdd == false)
             {
                 DataBase.bd.Group.Add(GROUP);
             }
 
-            SeasonTicket ticket = new SeasonTicket()
+            //находим список с клиентами для группы
+            List<SeasonTicket> ticket = DataBase.bd.SeasonTicket.Where(x => GROUP.idGroup == x.idGroup).ToList();
+            //если список не пустой, удаляем из него всех клиентов для этой группы
+            if (ticket.Count > 0)
             {
-                count = Convert.ToInt32(tbCount.Text),
-                idGroup = GROUP.idGroup,
-                idClient = cbClient.SelectedIndex + 1,
-                cost = GROUP.price * Convert.ToInt32(tbCount.Text)
-            };
-            if (grAdd == true)
-            {
-                DataBase.bd.SeasonTicket.Add(ticket);
-            }
-
-            if (cbInstructor.SelectedValue == null)
-            {
-                Training training = new Training()
+                foreach(SeasonTicket st in ticket)
                 {
-                    //idInstruct = Convert.ToInt32(tbSurname.Text + tbName.Text + tbPatronimyc.Text),
-                    //idGroup = Convert.ToInt32(tbGroup.Text)
-
-                    //surname = tbSurname.Text,
-                    //name = tbName.Text,
-                    //patronimyc = tbPatronimyc.Text,
-                    //phone = tbPhone.Text,
-                    //idCategory = cbCategory.SelectedIndex + 1,
-                    //idEducation = cbEducation.SelectedIndex + 1,
-                    //idPost = cbPost.SelectedIndex + 1,
+                    DataBase.bd.SeasonTicket.Remove(st);
+                }
+            }
+            foreach (Clients client in lbClients.SelectedItems)
+            {
+                SeasonTicket ST = new SeasonTicket()
+                {
+                    count = Convert.ToInt32(tbCount.Text),
+                    idGroup = GROUP.idGroup,
+                    idClient = client.idClient,
+                    cost = GROUP.price * Convert.ToInt32(tbCount.Text)
                 };
-                //if (grAdd == true)
-                //{
-                //    DataBase.bd.Training.Add(training);
-                //}
+                DataBase.bd.SeasonTicket.Add(ST);
             }
-            else
-            {
-                List<Instructors> INST = DataBase.bd.Instructors.Where(x => GROUP.idGroup == x.idInstruct).ToList();
 
-                foreach (Instructors inst in INST)
+            //находим список с инструкторами для группы
+            List<Training> training = DataBase.bd.Training.Where(x => GROUP.idGroup == x.idGroup).ToList();
+            //если список не пустой, удаляем из него всех инструкторов для этой группы
+            if (training.Count > 0)
+            {
+                foreach (Training t in training)
                 {
-                    Instructors instructors = new Instructors()
-                    {
-                        surname = tbSurname.Text,
-                        name = tbName.Text,
-                        patronimyc = tbPatronimyc.Text,
-                        phone = tbPhone.Text,
-                        idCategory = cbCategory.SelectedIndex + 1,
-                        idEducation = cbEducation.SelectedIndex + 1,
-                        idPost = cbPost.SelectedIndex + 1,
-                    };
-                    DataBase.bd.Instructors.Add(instructors);
-                }
-                if (grAdd == true)
-                {
-                    DataBase.bd.Group.Add(GROUP);
+                    DataBase.bd.Training.Remove(t);
                 }
             }
+
+            foreach (Instructors instructors in lbInstructors.SelectedItems)
+            {
+                Training TR = new Training()
+                {
+                    idGroup = GROUP.idGroup,
+                    idInstruct = instructors.idInstruct,
+                };
+                DataBase.bd.Training.Add(TR);
+            }
+
             DataBase.bd.SaveChanges();
             MessageBox.Show("Успешное добавление!");
             ClassFrame.frameL.Navigate(new PageGroup());
+
+
             //}
             //catch
             //{
             //    MessageBox.Show("Что-то пошло не так..");
             //}
         }
-
-        private void imAdd_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        private void btBack_Click(object sender, RoutedEventArgs e)
         {
-            spNewInstructors.Visibility = Visibility.Visible;
-            wpNewInstructors.Visibility = Visibility.Visible;
+            ClassFrame.frameL.Navigate(new PageGroup());
         }
-    }
+
+        private void imAdd_PreviewMouseUp(object sender, MouseButtonEventArgs e) //переход на страницу добавление инструктора
+        {
+            ClassFrame.frameL.Navigate(new PageAddInstructors());
+        }
+}
 }

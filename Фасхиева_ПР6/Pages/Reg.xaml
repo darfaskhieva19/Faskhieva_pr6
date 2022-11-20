@@ -32,7 +32,7 @@
                     <GroupBox Header="День рождения" Style="{StaticResource gpStyle}">
                         <DatePicker Name="Birthday"/>
                     </GroupBox>
-                    <GroupBox Header="Пол" Style="{StaticResource gpStyle}">
+                    <GroupBox Header="Пол" Style="{StaticResource gpStyle}" Height="65">
                         <StackPanel>
                             <RadioButton Name="RBWoman">Женский</RadioButton>
                             <RadioButton Name="RBMan">Мужской</RadioButton>
@@ -40,7 +40,7 @@
                     </GroupBox>
                 </StackPanel>
             </WrapPanel>
-            <StackPanel Margin="5">
+            <StackPanel Margin="3">
                 <GroupBox Header="Логин" Style="{StaticResource gpStyle}">
                     <TextBox Name="tbLogin"/>
                 </GroupBox>

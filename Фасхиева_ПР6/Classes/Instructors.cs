@@ -12,7 +12,7 @@ namespace Фасхиева_ПР6
         {
             get
             {
-                return surname + " " + name[0] + " " + patronimyc[0];
+                return surname + " " + name[0] + "." + " " + patronimyc[0] + ".";
             }
         }
     }

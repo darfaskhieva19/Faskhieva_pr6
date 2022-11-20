@@ -155,7 +155,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SeasonTicket_Clients">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SeasonTicket" Type="Self.SeasonTicket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
@@ -195,7 +197,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Training_Instructors">
-          <End Role="Instructors" Type="Self.Instructors" Multiplicity="1" />
+          <End Role="Instructors" Type="Self.Instructors" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Training" Type="Self.Training" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Instructors">
@@ -450,7 +454,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SeasonTicket_Clients">
-          <End Type="Model.Clients" Role="Clients" Multiplicity="1" />
+          <End Type="Model.Clients" Role="Clients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model.SeasonTicket" Role="SeasonTicket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
@@ -514,7 +520,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Training_Instructors">
-          <End Type="Model.Instructors" Role="Instructors" Multiplicity="1" />
+          <End Type="Model.Instructors" Role="Instructors" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model.Training" Role="Training" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Instructors">

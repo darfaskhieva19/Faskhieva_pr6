@@ -13,7 +13,7 @@
             <RowDefinition Height="8*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView Name="lGroup" Height="390" Background="#F4FAEE" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView Name="lGroup" Height="400" Background="#F4FAEE" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel HorizontalAlignment="Center"></WrapPanel>
@@ -31,10 +31,10 @@
                                 <TextBlock Uid="{Binding idGroup}" Name="tbCost" Loaded="tbCost_Loaded"  Style="{StaticResource TBGroup}"/>
                                 <WrapPanel>
                                 <StackPanel>
-                                    <Button Name="btnDelete" Uid="{Binding idGroup}" Content="Удалить" Click="btnDelete_Click" Template="{StaticResource Btn1}"/>                                    
+                                        <Button Name="btnDelete" Uid="{Binding idGroup}" Content="Удалить" Click="btnDelete_Click" Template="{StaticResource btnList}"/>                                    
                                 </StackPanel>
                                     <StackPanel>
-                                        <Button Name="btnUpdate" Uid="{Binding idGroup}" Content="Изменить" Click="btnUpdate_Click" Template="{StaticResource Btn1}"/>
+                                        <Button Name="btnUpdate" Uid="{Binding idGroup}" Content="Изменить" Click="btnUpdate_Click" Template="{StaticResource btnList}"/>
                                     </StackPanel>
                                 </WrapPanel>
                             </StackPanel>
