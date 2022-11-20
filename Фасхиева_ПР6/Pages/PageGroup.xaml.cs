@@ -68,7 +68,7 @@ namespace Фасхиева_ПР6
             string str = "";
             foreach (Training t in TR)
             {
-                str += t.Instructors.surname + " " + t.Instructors.name + " " + t.Instructors.patronimyc + "\n";
+                str += t.Instructors.surname + " " + t.Instructors.name + " " + t.Instructors.patronimyc + " ";
             }
 
             tb.Text = "Инструктор: " + str.Substring(0, str.Length);
@@ -93,6 +93,19 @@ namespace Фасхиева_ПР6
             int index = Convert.ToInt32(btn.Uid);
             Group group = DataBase.bd.Group.FirstOrDefault(x=>x.idGroup == index);
             ClassFrame.frameL.Navigate(new PageAddUpdate(group));
+        }
+
+        private void tbClient_Loaded(object sender, RoutedEventArgs e)
+        {
+            TextBlock tb = (TextBlock)sender;
+            int index = Convert.ToInt32(tb.Uid);
+            List<SeasonTicket> tick = DataBase.bd.SeasonTicket.Where(x => x.idGroup == index).ToList();
+            string strCl = "";
+            foreach(SeasonTicket t in tick)
+            {
+                strCl+=t.Clients.surname + " " + t.Clients.name + " " + t.Clients.patronimyc + " ";
+            }
+            tb.Text = "Клиент: " + strCl.Substring(0, strCl.Length);
         }
     }
 }

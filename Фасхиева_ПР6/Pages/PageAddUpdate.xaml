@@ -12,10 +12,10 @@
         
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
-            <RowDefinition />
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel>
+        <StackPanel Grid.Row="0">
             <StackPanel>
                 <TextBlock Name="tbHeader" Text="Добавление записи" Style="{StaticResource Header}"/>
             </StackPanel>
@@ -37,7 +37,7 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding NameClient}"></TextBlock>
+                                        <TextBlock Text="{Binding NameClient}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -50,7 +50,7 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding NameInst}"></TextBlock>
+                                        <TextBlock Text="{Binding NameInst}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

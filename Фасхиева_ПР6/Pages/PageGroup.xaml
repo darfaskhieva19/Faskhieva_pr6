@@ -13,7 +13,7 @@
             <RowDefinition Height="8*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView Name="lGroup" Height="400" Background="#F4FAEE" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView Name="lGroup" Height="465" Background="#F4FAEE" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel HorizontalAlignment="Center"></WrapPanel>
@@ -22,10 +22,11 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Padding="1" CornerRadius="5" BorderThickness="0.5" BorderBrush="Black">
-                        <Grid Name="gridM" Width="355" Height="250" Background="{Binding ColorCost}">
+                        <Grid Name="gridM" Width="345" Height="275" Background="{Binding ColorCost}">
                             <StackPanel>
                                 <TextBlock Text="{Binding NameGroup}" Style="{StaticResource TBlock}" HorizontalAlignment="Center"/>
                                 <TextBlock TextWrapping="Wrap" Name="tbTraning" Uid="{Binding idGroup}"  Loaded="tbTraning_Loaded" Style="{StaticResource TBGroup}"/>
+                                <TextBlock TextWrapping="Wrap" Name="tbClient" Uid="{Binding idGroup}" Loaded="tbClient_Loaded" Style="{StaticResource TBGroup}"/>
                                 <TextBlock Text="{Binding PriceGroup}"  Style="{StaticResource TBGroup}"/>
                                 <TextBlock Uid="{Binding idGroup}" Name="tbCount" Loaded="tbCount_Loaded"  Style="{StaticResource TBGroup}"/>
                                 <TextBlock Uid="{Binding idGroup}" Name="tbCost" Loaded="tbCost_Loaded"  Style="{StaticResource TBGroup}"/>

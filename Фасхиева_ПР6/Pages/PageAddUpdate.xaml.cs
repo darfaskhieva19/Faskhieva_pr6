@@ -55,7 +55,13 @@ namespace Фасхиева_ПР6.Pages
             grAdd = true;
             tbGroup.Text = group.NameGroup; //вывод названия группы
             tbPrice.Text = Convert.ToString(group.price); //вывод цены за одно занятие
-
+            List<SeasonTicket> ticket = DataBase.bd.SeasonTicket.Where(x => x.idGroup == group.idGroup).ToList();
+            int k = 0;
+            foreach(SeasonTicket t in ticket)
+            {
+                k = Convert.ToInt32(t.count);
+            }
+            tbCount.Text = "" + k; //вывод количества посещений
             //int str = 0;
             //foreach (SeasonTicket st in ST)
             //{
@@ -71,12 +77,6 @@ namespace Фасхиева_ПР6.Pages
                     lbClients.SelectedItems.Add(client);
                 }
             }
-            int k = 0;
-            foreach (SeasonTicket t in ST)
-            {
-                k = Convert.ToInt32(t.count);                
-            }
-            tbCount.Text = "" + k; //вывод количества посещений
 
             // находим инструктора для той группы, которую мы редактируем
             List<Training> TR = DataBase.bd.Training.Where(x=>x.idGroup==group.idGroup).ToList();
@@ -99,73 +99,71 @@ namespace Фасхиева_ПР6.Pages
 
         private void btAdd_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            if (grAdd == false)
+            try
             {
-                GROUP = new Group();
-            }
-            //заполняем поля таблицы Group
-            GROUP.title = tbGroup.Text;
-            GROUP.price = Convert.ToInt32(tbPrice.Text);
-            if (grAdd == false)
-            {
-                DataBase.bd.Group.Add(GROUP);
-            }
-
-            //находим список с клиентами для группы
-            List<SeasonTicket> ticket = DataBase.bd.SeasonTicket.Where(x => GROUP.idGroup == x.idGroup).ToList();
-            //если список не пустой, удаляем из него всех клиентов для этой группы
-            if (ticket.Count > 0)
-            {
-                foreach(SeasonTicket st in ticket)
+                if (grAdd == false)
                 {
-                    DataBase.bd.SeasonTicket.Remove(st);
+                    GROUP = new Group();
                 }
-            }
-            foreach (Clients client in lbClients.SelectedItems)
-            {
-                SeasonTicket ST = new SeasonTicket()
+                //заполняем поля таблицы Group
+                GROUP.title = tbGroup.Text;
+                GROUP.price = Convert.ToInt32(tbPrice.Text);
+                if (grAdd == false)
                 {
-                    count = Convert.ToInt32(tbCount.Text),
-                    idGroup = GROUP.idGroup,
-                    idClient = client.idClient,
-                    cost = GROUP.price * Convert.ToInt32(tbCount.Text)
-                };
-                DataBase.bd.SeasonTicket.Add(ST);
-            }
-
-            //находим список с инструкторами для группы
-            List<Training> training = DataBase.bd.Training.Where(x => GROUP.idGroup == x.idGroup).ToList();
-            //если список не пустой, удаляем из него всех инструкторов для этой группы
-            if (training.Count > 0)
-            {
-                foreach (Training t in training)
-                {
-                    DataBase.bd.Training.Remove(t);
+                    DataBase.bd.Group.Add(GROUP);
                 }
-            }
 
-            foreach (Instructors instructors in lbInstructors.SelectedItems)
-            {
-                Training TR = new Training()
+                //находим список с клиентами для группы
+                List<SeasonTicket> ticket = DataBase.bd.SeasonTicket.Where(x => GROUP.idGroup == x.idGroup).ToList();
+                //если список не пустой, удаляем из него всех клиентов для этой группы
+                if (ticket.Count > 0)
                 {
-                    idGroup = GROUP.idGroup,
-                    idInstruct = instructors.idInstruct,
-                };
-                DataBase.bd.Training.Add(TR);
+                    foreach (SeasonTicket st in ticket)
+                    {
+                        DataBase.bd.SeasonTicket.Remove(st);
+                    }
+                }
+                foreach (Clients client in lbClients.SelectedItems)
+                {
+                    SeasonTicket ST = new SeasonTicket()
+                    {
+                        count = Convert.ToInt32(tbCount.Text),
+                        idGroup = GROUP.idGroup,
+                        idClient = client.idClient,
+                        cost = GROUP.price * Convert.ToInt32(tbCount.Text)
+                    };
+                    DataBase.bd.SeasonTicket.Add(ST);
+                }
+
+                //находим список с инструкторами для группы
+                List<Training> training = DataBase.bd.Training.Where(x => GROUP.idGroup == x.idGroup).ToList();
+                //если список не пустой, удаляем из него всех инструкторов для этой группы
+                if (training.Count > 0)
+                {
+                    foreach (Training t in training)
+                    {
+                        DataBase.bd.Training.Remove(t);
+                    }
+                }
+
+                foreach (Instructors instructors in lbInstructors.SelectedItems)
+                {
+                    Training TR = new Training()
+                    {
+                        idGroup = GROUP.idGroup,
+                        idInstruct = instructors.idInstruct,
+                    };
+                    DataBase.bd.Training.Add(TR);
+                }
+
+                DataBase.bd.SaveChanges();
+                MessageBox.Show("Успешное добавление!");
+                ClassFrame.frameL.Navigate(new PageGroup());
             }
-
-            DataBase.bd.SaveChanges();
-            MessageBox.Show("Успешное добавление!");
-            ClassFrame.frameL.Navigate(new PageGroup());
-
-
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Что-то пошло не так..");
-            //}
+            catch
+            {
+                MessageBox.Show("Что-то пошло не так..");
+            }
         }
         private void btBack_Click(object sender, RoutedEventArgs e)
         {
