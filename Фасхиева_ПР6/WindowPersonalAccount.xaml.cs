@@ -19,9 +19,11 @@ namespace Фасхиева_ПР6
     /// </summary>
     public partial class WindowPersonalAccount : Window
     {
-        public WindowPersonalAccount()
+        Clients user;
+        public WindowPersonalAccount(Clients user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

@@ -81,7 +81,7 @@
             <PropertyRef Name="idTicket" />
           </Key>
           <Property Name="idTicket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="count" Type="int" Nullable="false" />
+          <Property Name="countVisit" Type="int" Nullable="false" />
           <Property Name="idGroup" Type="int" Nullable="false" />
           <Property Name="idClient" Type="int" Nullable="false" />
           <Property Name="cost" Type="float" Nullable="false" />
@@ -400,7 +400,7 @@
             <PropertyRef Name="idTicket" />
           </Key>
           <Property Name="idTicket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="count" Type="Int32" Nullable="false" />
+          <Property Name="countVisit" Type="Int32" Nullable="false" />
           <Property Name="idGroup" Type="Int32" Nullable="false" />
           <Property Name="idClient" Type="Int32" Nullable="false" />
           <Property Name="cost" Type="Double" Nullable="false" />
@@ -624,7 +624,7 @@
                 <ScalarProperty Name="cost" ColumnName="cost" />
                 <ScalarProperty Name="idClient" ColumnName="idClient" />
                 <ScalarProperty Name="idGroup" ColumnName="idGroup" />
-                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="countVisit" ColumnName="countVisit" />
                 <ScalarProperty Name="idTicket" ColumnName="idTicket" />
               </MappingFragment>
             </EntityTypeMapping>

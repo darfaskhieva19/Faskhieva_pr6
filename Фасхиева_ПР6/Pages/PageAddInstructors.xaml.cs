@@ -22,7 +22,8 @@ namespace Фасхиева_ПР6.Pages
     /// </summary>
     public partial class PageAddInstructors : Page
     {
-        public PageAddInstructors()
+        Clients user;
+        public PageAddInstructors(Clients user)
         {
             InitializeComponent();
 
@@ -37,6 +38,8 @@ namespace Фасхиева_ПР6.Pages
             cbPost.ItemsSource = DataBase.bd.Posts.ToList();
             cbPost.SelectedValuePath = "idPost";
             cbPost.DisplayMemberPath = "post";
+
+            this.user = user;
         }
 
         bool Telefon(string phone)
@@ -70,13 +73,13 @@ namespace Фасхиева_ПР6.Pages
                 DataBase.bd.Instructors.Add(instructors);
                 DataBase.bd.SaveChanges();
                 MessageBox.Show("Успешное добавление!");
-                ClassFrame.frameL.Navigate(new PageAddUpdate());
+                ClassFrame.frameL.Navigate(new PageAddUpdate(user));
             }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.frameL.Navigate(new PageAddUpdate());
+            ClassFrame.frameL.Navigate(new PageAddUpdate(user));
         }
     }
 }

@@ -19,9 +19,11 @@ namespace Фасхиева_ПР6
     /// </summary>
     public partial class WindowUpdateLoginPassword : Window
     {
-        public WindowUpdateLoginPassword()
+        Clients user;
+        public WindowUpdateLoginPassword(Clients user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
         private void tbUpdatePass_Click(object sender, RoutedEventArgs e)

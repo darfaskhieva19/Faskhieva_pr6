@@ -27,14 +27,16 @@ namespace Фасхиева_ПР6.Pages
     /// </summary>
     public partial class PageAddUpdate : Page
     {
+        Clients user;
         Group GROUP; // объект, в котором будут хранится данные о новой или отредактированной группе
         bool grAdd = false; // для определения, создаем новый объект или редактируем старый
         private List<Group> group;
-        public PageAddUpdate()  // конструктор для создания новой группы (без аргументов)       
+        public PageAddUpdate(Clients user)  // конструктор для создания новой группы (без аргументов)       
         {
             InitializeComponent();
             listFild();
             grAdd = false;
+            this.user = user;
         }
         public void listFild() // метод для заполнения списков
         {
@@ -46,7 +48,7 @@ namespace Фасхиева_ПР6.Pages
             lbClients.ItemsSource = DataBase.bd.Clients.ToList();
         }
        
-        public PageAddUpdate(Group group)  // конструктор для редактирования данных о группе ( с аргументом)
+        public PageAddUpdate(Clients user, Group group)  // конструктор для редактирования данных о группе ( с аргументом)
         {
             InitializeComponent();
 
@@ -59,7 +61,7 @@ namespace Фасхиева_ПР6.Pages
             int k = 0;
             foreach(SeasonTicket t in ticket)
             {
-                k = Convert.ToInt32(t.count);
+                k = Convert.ToInt32(t.countVisit);
             }
             tbCount.Text = "" + k; //вывод количества посещений
             //int str = 0;
@@ -127,7 +129,7 @@ namespace Фасхиева_ПР6.Pages
                 {
                     SeasonTicket ST = new SeasonTicket()
                     {
-                        count = Convert.ToInt32(tbCount.Text),
+                        countVisit = Convert.ToInt32(tbCount.Text),
                         idGroup = GROUP.idGroup,
                         idClient = client.idClient,
                         cost = GROUP.price * Convert.ToInt32(tbCount.Text)
@@ -158,7 +160,7 @@ namespace Фасхиева_ПР6.Pages
 
                 DataBase.bd.SaveChanges();
                 MessageBox.Show("Успешное добавление!");
-                ClassFrame.frameL.Navigate(new PageGroup());
+                ClassFrame.frameL.Navigate(new PageGroup(user));
             }
             catch
             {
@@ -167,12 +169,12 @@ namespace Фасхиева_ПР6.Pages
         }
         private void btBack_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.frameL.Navigate(new PageGroup());
+            ClassFrame.frameL.Navigate(new PageGroup(user));
         }
 
         private void imAdd_PreviewMouseUp(object sender, MouseButtonEventArgs e) //переход на страницу добавление инструктора
         {
-            ClassFrame.frameL.Navigate(new PageAddInstructors());
+            ClassFrame.frameL.Navigate(new PageAddInstructors(user));
         }
 }
 }

@@ -40,7 +40,7 @@ namespace Фасхиева_ПР6
                 switch (log.idRole)
                 {
                     case 1:
-                        ClassFrame.frameL.Navigate(new MenuAdmin());
+                        ClassFrame.frameL.Navigate(new MenuAdmin(log));
                         MessageBox.Show("Добро пожаловать, администратор!");
                         break;
                     case 2:

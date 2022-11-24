@@ -21,16 +21,18 @@ namespace Фасхиева_ПР6
     /// </summary>
     public partial class PageGroup : Page
     {
+        Clients user;
         List<Group> groups = DataBase.bd.Group.ToList();
-        public PageGroup()
+        public PageGroup(Clients user)
         {
             InitializeComponent();
             lGroup.ItemsSource = groups;
+            this.user = user;
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.frameL.Navigate(new MenuAdmin());
+            ClassFrame.frameL.Navigate(new MenuAdmin(user));
         }
 
         private void tbCost_Loaded(object sender, RoutedEventArgs e)
@@ -41,7 +43,7 @@ namespace Фасхиева_ПР6
             int cost = 0;
             foreach (SeasonTicket stc in ST)
             {
-                cost += Convert.ToInt32(stc.count * stc.Group.price);
+                cost += Convert.ToInt32(stc.countVisit * stc.Group.price);
             }
 
             tb.Text = "Стоимость занятий в месяц: " + cost.ToString() + " руб.";       
@@ -55,7 +57,7 @@ namespace Фасхиева_ПР6
             int count = 0;
             foreach (SeasonTicket stc in tick)
             {
-                count += Convert.ToInt32(stc.count);
+                count += Convert.ToInt32(stc.countVisit);
             }
             tb.Text = "Количество посещений: " + count.ToString();
         }
@@ -76,7 +78,7 @@ namespace Фасхиева_ПР6
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.frameL.Navigate(new PageAddUpdate());
+            ClassFrame.frameL.Navigate(new PageAddUpdate(user));
         }
         private void btnDelete_Click(object sender, RoutedEventArgs e) //кнопка удаления группы
         {
@@ -85,14 +87,14 @@ namespace Фасхиева_ПР6
             Group group = DataBase.bd.Group.FirstOrDefault(x => x.idGroup == index);
             DataBase.bd.Group.Remove(group);
             DataBase.bd.SaveChanges();
-            ClassFrame.frameL.Navigate(new PageGroup()); //перезагрузка страницы
+            ClassFrame.frameL.Navigate(new PageGroup(user)); //перезагрузка страницы
         }
         private void btnUpdate_Click(object sender, RoutedEventArgs e) //переход на страницу редактирования данных
         {
             Button btn = (Button)sender;
             int index = Convert.ToInt32(btn.Uid);
             Group group = DataBase.bd.Group.FirstOrDefault(x=>x.idGroup == index);
-            ClassFrame.frameL.Navigate(new PageAddUpdate(group));
+            ClassFrame.frameL.Navigate(new PageAddUpdate(user, group));
         }
 
         private void tbClient_Loaded(object sender, RoutedEventArgs e)

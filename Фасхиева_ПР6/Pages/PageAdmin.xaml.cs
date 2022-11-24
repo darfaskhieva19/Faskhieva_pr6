@@ -22,10 +22,12 @@ namespace Фасхиева_ПР6
     /// </summary>
     public partial class PageAdmin : Page
     {
-        public PageAdmin()
+        Clients user;
+        public PageAdmin(Clients user)
         {
             InitializeComponent();
-            dgUsers.ItemsSource=DataBase.bd.Clients.ToList();
+            dgUsers.ItemsSource = DataBase.bd.Clients.ToList();
+            this.user = user;
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
@@ -70,7 +72,7 @@ namespace Фасхиева_ПР6
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.frameL.Navigate(new MenuAdmin());
+            ClassFrame.frameL.Navigate(new MenuAdmin(user));
         }
 
         private void RBname_Click(object sender, RoutedEventArgs e)
