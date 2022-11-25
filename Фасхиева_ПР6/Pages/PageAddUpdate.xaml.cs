@@ -61,9 +61,10 @@ namespace Фасхиева_ПР6.Pages
             int k = 0;
             foreach(SeasonTicket t in ticket)
             {
-                k = Convert.ToInt32(t.countVisit);
+                k = t.countVisit;
             }
             tbCount.Text = "" + k; //вывод количества посещений
+
             //int str = 0;
             //foreach (SeasonTicket st in ST)
             //{

@@ -17,6 +17,7 @@ namespace Фасхиева_ПР6
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Clients()
         {
+            this.ClientPhoto = new HashSet<ClientPhoto>();
             this.SeasonTicket = new HashSet<SeasonTicket>();
         }
     
@@ -31,6 +32,8 @@ namespace Фасхиева_ПР6
         public int password { get; set; }
         public int idRole { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ClientPhoto> ClientPhoto { get; set; }
         public virtual Genders Genders { get; set; }
         public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

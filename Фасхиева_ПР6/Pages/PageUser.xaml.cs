@@ -20,9 +20,35 @@ namespace Фасхиева_ПР6
     /// </summary>
     public partial class PageUser : Page
     {
-        public PageUser()
+        Clients user;
+        public PageUser(Clients user)
         {
             InitializeComponent();
+            this.user = user;
+        }
+
+        private void ChoosePhoto_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddPhoto_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnUpdateData_Click(object sender, RoutedEventArgs e) //обновление данных
+        {
+            WindowPersonalAccount windowPers = new WindowPersonalAccount(user);
+            windowPers.ShowDialog();
+            ClassFrame.frameL.Navigate(new PageUser(user));
+        }
+
+        private void btnUpdateLoginPass_Click(object sender, RoutedEventArgs e) //смена пароля
+        {
+            WindowUpdateLoginPassword windowLogPassword = new WindowUpdateLoginPassword(user);
+            windowLogPassword.ShowDialog();
+            ClassFrame.frameL.Navigate(new PageUser(user));
         }
     }
 }

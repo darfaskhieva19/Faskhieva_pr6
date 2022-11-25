@@ -26,6 +26,7 @@ namespace Фасхиева_ПР6
         }
     
         public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<ClientPhoto> ClientPhoto { get; set; }
         public virtual DbSet<Clients> Clients { get; set; }
         public virtual DbSet<Education> Education { get; set; }
         public virtual DbSet<Genders> Genders { get; set; }

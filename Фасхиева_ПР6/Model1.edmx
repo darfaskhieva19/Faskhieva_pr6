@@ -12,6 +12,15 @@
           <Property Name="idCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="category" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="ClientPhoto">
+          <Key>
+            <PropertyRef Name="idPhoto" />
+          </Key>
+          <Property Name="idPhoto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idClient" Type="int" Nullable="false" />
+          <Property Name="photoBinary" Type="varbinary(max)" />
+          <Property Name="photoPath" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="idClient" />
@@ -94,6 +103,18 @@
           <Property Name="idInstruct" Type="int" Nullable="false" />
           <Property Name="idGroup" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_ClientPhoto_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="ClientPhoto" Type="Self.ClientPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="ClientPhoto">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Clients_Genders">
           <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
           <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
@@ -212,6 +233,7 @@
         </Association>
         <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientPhoto" EntityType="Self.ClientPhoto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
@@ -221,6 +243,10 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SeasonTicket" EntityType="Self.SeasonTicket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ClientPhoto_Clients" Association="Self.FK_ClientPhoto_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientPhoto" EntitySet="ClientPhoto" />
+          </AssociationSet>
           <AssociationSet Name="FK_Clients_Genders" Association="Self.FK_Clients_Genders">
             <End Role="Genders" EntitySet="Genders" />
             <End Role="Clients" EntitySet="Clients" />
@@ -264,6 +290,7 @@
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="CentrEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Category" EntityType="Model.Category" />
+          <EntitySet Name="ClientPhoto" EntityType="Model.ClientPhoto" />
           <EntitySet Name="Clients" EntityType="Model.Clients" />
           <EntitySet Name="Education" EntityType="Model.Education" />
           <EntitySet Name="Genders" EntityType="Model.Genders" />
@@ -276,6 +303,10 @@
           <AssociationSet Name="FK_Instructors_Category" Association="Model.FK_Instructors_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Instructors" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientPhoto_Clients" Association="Model.FK_ClientPhoto_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientPhoto" EntitySet="ClientPhoto" />
           </AssociationSet>
           <AssociationSet Name="FK_Clients_Genders" Association="Model.FK_Clients_Genders">
             <End Role="Genders" EntitySet="Genders" />
@@ -318,6 +349,16 @@
           <Property Name="category1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Instructors" Relationship="Model.FK_Instructors_Category" FromRole="Category" ToRole="Instructors" />
         </EntityType>
+        <EntityType Name="ClientPhoto">
+          <Key>
+            <PropertyRef Name="idPhoto" />
+          </Key>
+          <Property Name="idPhoto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idClient" Type="Int32" Nullable="false" />
+          <Property Name="photoBinary" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="photoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Clients" Relationship="Model.FK_ClientPhoto_Clients" FromRole="ClientPhoto" ToRole="Clients" />
+        </EntityType>
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="idClient" />
@@ -332,6 +373,7 @@
           <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="Int32" Nullable="false" />
           <Property Name="idRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ClientPhoto" Relationship="Model.FK_ClientPhoto_Clients" FromRole="Clients" ToRole="ClientPhoto" />
           <NavigationProperty Name="Genders" Relationship="Model.FK_Clients_Genders" FromRole="Clients" ToRole="Genders" />
           <NavigationProperty Name="Role" Relationship="Model.FK_Clients_Role" FromRole="Clients" ToRole="Role" />
           <NavigationProperty Name="SeasonTicket" Relationship="Model.FK_SeasonTicket_Clients" FromRole="Clients" ToRole="SeasonTicket" />
@@ -426,6 +468,18 @@
             </Principal>
             <Dependent Role="Instructors">
               <PropertyRef Name="idCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientPhoto_Clients">
+          <End Type="Model.Clients" Role="Clients" Multiplicity="1" />
+          <End Type="Model.ClientPhoto" Role="ClientPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="ClientPhoto">
+              <PropertyRef Name="idClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -544,6 +598,16 @@
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="category1" ColumnName="category" />
                 <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientPhoto">
+            <EntityTypeMapping TypeName="Model.ClientPhoto">
+              <MappingFragment StoreEntitySet="ClientPhoto">
+                <ScalarProperty Name="photoPath" ColumnName="photoPath" />
+                <ScalarProperty Name="photoBinary" ColumnName="photoBinary" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+                <ScalarProperty Name="idPhoto" ColumnName="idPhoto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -19,11 +19,16 @@ namespace Фасхиева_ПР6
     /// </summary>
     public partial class WindowPersonalAccount : Window
     {
-        Clients user;
+        Clients user; // создаем объект для хранения информации о пользователе
         public WindowPersonalAccount(Clients user)
         {
             InitializeComponent();
             this.user = user;
+            tSurname.Text = user.surname;
+            tName.Text = user.name;
+            tPatronimyc.Text=user.patronimyc;
+            tPhone.Text=user.phone;
+            Birthday.SelectedDate = user.birthday;
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -33,7 +38,14 @@ namespace Фасхиева_ПР6
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-
+            user.surname = tSurname.Text;
+            user.name = tName.Text;
+            user.patronimyc=tPatronimyc.Text;
+            user.phone= tPhone.Text;
+            user.birthday = Convert.ToDateTime(Birthday.SelectedDate);
+            DataBase.bd.SaveChanges();
+            MessageBox.Show("Успешное изменение данных!");
+            this.Close();
         }
     }
 }

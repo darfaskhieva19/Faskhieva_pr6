@@ -44,7 +44,7 @@ namespace Фасхиева_ПР6
                         MessageBox.Show("Добро пожаловать, администратор!");
                         break;
                     case 2:
-                        ClassFrame.frameL.Navigate(new PageUser());
+                        ClassFrame.frameL.Navigate(new PageUser(log));
                         MessageBox.Show("Добро пожаловать, пользователь!");
                         break;
                 }               

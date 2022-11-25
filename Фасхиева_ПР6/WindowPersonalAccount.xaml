@@ -8,8 +8,8 @@
         Title="WindowPersonalAccount" Height="370" Width="550">
     <Grid>
         <StackPanel>
-        <StackPanel HorizontalAlignment="Center">
-            <TextBlock Text="Изменение личных данных" Style="{StaticResource Header}"/>
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="Изменение личных данных" Style="{StaticResource Header}"/>
         </StackPanel>
             <WrapPanel HorizontalAlignment="Center" Margin="10">
                 <StackPanel>
@@ -29,12 +29,6 @@
                     </GroupBox>
                     <GroupBox Header="День рождения" Style="{StaticResource gbStyle}">
                         <DatePicker Name="Birthday"/>
-                    </GroupBox>
-                    <GroupBox Header="Пол" Style="{StaticResource gbStyle}" Height="60">
-                        <StackPanel>
-                            <RadioButton Name="RBWoman">Женский</RadioButton>
-                            <RadioButton Name="RBMan">Мужской</RadioButton>
-                        </StackPanel>
                     </GroupBox>
                 </StackPanel>
             </WrapPanel>

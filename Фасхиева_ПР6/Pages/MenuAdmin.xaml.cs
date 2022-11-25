@@ -25,11 +25,11 @@ namespace Фасхиева_ПР6
         {
             InitializeComponent();
             this.user = user;
-            //tbSurname.Text = tbSurname.Text + user.surname;
-            //tbName.Text = tbName.Text + user.name;
-            //tbPatronimyc.Text = tbPatronimyc.Text + user.patronimyc;
-            //tbPhone.Text = tbPhone.Text + user.phone;
-            //tbBirthday.Text = tbBirthday.Text + user.birthday.ToString("dd MMMM yyyy");
+            tbSurname.Text = tbSurname.Text + user.surname;
+            tbName.Text = tbName.Text + user.name;
+            tbPatronimyc.Text = tbPatronimyc.Text + user.patronimyc;
+            tbPhone.Text = tbPhone.Text + user.phone;
+            tbBirthday.Text = tbBirthday.Text + user.birthday.ToString("dd MMMM yyyy");
         }
 
         private void btGroup_Click(object sender, RoutedEventArgs e)
