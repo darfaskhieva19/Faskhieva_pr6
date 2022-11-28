@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Фасхиева_ПР6"
         mc:Ignorable="d"
-        Title="WindowPersonalAccount" Height="370" Width="550">
+        Title="WindowPersonalAccount" Height="405" Width="550">
     <Grid>
         <StackPanel>
-            <StackPanel HorizontalAlignment="Center">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Image Source="\Picture\kartochka.png" Height="95" Width="95" HorizontalAlignment="Left"/>
                 <TextBlock Text="Изменение личных данных" Style="{StaticResource Header}"/>
         </StackPanel>
             <WrapPanel HorizontalAlignment="Center" Margin="10">

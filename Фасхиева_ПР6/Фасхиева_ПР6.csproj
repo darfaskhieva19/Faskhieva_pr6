@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -136,10 +137,10 @@
     <Compile Include="Training.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="WindowPersonalAccount.xaml.cs">
+    <Compile Include="Windows\WindowPersonalAccount.xaml.cs">
       <DependentUpon>WindowPersonalAccount.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowUpdateLoginPassword.xaml.cs">
+    <Compile Include="Windows\WindowUpdateLoginPassword.xaml.cs">
       <DependentUpon>WindowUpdateLoginPassword.xaml</DependentUpon>
     </Compile>
     <Page Include="Pages\Auto.xaml">
@@ -191,11 +192,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowPersonalAccount.xaml">
+    <Page Include="Windows\WindowPersonalAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowUpdateLoginPassword.xaml">
+    <Page Include="Windows\WindowUpdateLoginPassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -245,6 +246,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Picture\dataLogPass.png" />
+    <Resource Include="Picture\kartochka.png" />
     <Resource Include="Picture\image.png" />
     <Resource Include="Picture\icon_plus.png" />
     <Resource Include="Picture\logo.png" />

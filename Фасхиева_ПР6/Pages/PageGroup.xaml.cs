@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +29,16 @@ namespace Фасхиева_ПР6
         {
             InitializeComponent();
             lGroup.ItemsSource = groups;
+            lGroup.ItemsSource = DataBase.bd.Group.ToList();
             this.user = user;
+            List <Clients> client = DataBase.bd.Clients.ToList();
+            cbClient.Items.Add("Все клиенты");
+            for(int i = 0; i < client.Count; i++)
+            {
+                cbClient.Items.Add(client[i].NameClient);
+            }
+            cbClient.SelectedIndex = 0; // выбранное по умолчанию значение в списке с породами котов ("Все клиенты")
+            cbSortirovka.SelectedIndex = 0; // выбранное по умолчанию значение в списке с видами сортировки ("Без сортировки")
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -108,6 +119,55 @@ namespace Фасхиева_ПР6
                 strCl+=t.Clients.surname + " " + t.Clients.name + " " + t.Clients.patronimyc + " ";
             }
             tb.Text = "Клиент: " + strCl.Substring(0, strCl.Length);
+        }
+        void Filter() // метод для одновременной фильтрации, поиска и сортировки
+        {
+            List<Group> groups = new List<Group>(); // пустой список, который далее будет заполнять элементами, удавлетворяющими условиям фильтрации, поиска и сортировки
+            string client = cbClient.SelectedValue.ToString();  // выбранное пользователем клиента
+            int index = cbClient.SelectedIndex;
+            // поиск значений, удовлетворяющих условия фильтра
+            if (index != 0)
+            {
+                //group = DataBase.bd.Group.Where(x => x.SeasonTicket.idC == breed).ToList();
+            }
+            else  // если выбран пункт "Все клиенты", то сбрасываем фильтрацию:
+            {
+                groups = DataBase.bd.Group.ToList();
+            }
+
+            // сортировка
+            switch (cbSortirovka.SelectedIndex)
+            {
+                case 1:
+                        groups.Sort((x, y) => x.NameGroup.CompareTo(y.NameGroup));
+                    break;
+                case 2:
+                        groups.Sort((x, y) => x.NameGroup.CompareTo(y.NameGroup));
+                        groups.Reverse();
+                    break;
+            }
+
+            // поиск совпадений по названию группы
+            if (!string.IsNullOrWhiteSpace(tbGroupSearch.Text))  // если строка не пустая и если она не состоит из пробелов
+            {
+                groups = groups.Where(x => x.NameGroup.ToLower().Contains(tbGroupSearch.Text.ToLower())).ToList();
+            }
+
+            lGroup.ItemsSource = groups;
+            if (groups.Count == 0)
+            {
+                MessageBox.Show("нет записей");
+            }
+        }
+
+        private void cbSortirovka_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void tbGroup_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filter();
         }
     }
 }

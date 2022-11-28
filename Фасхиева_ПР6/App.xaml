@@ -136,6 +136,12 @@
             </Border>
         </ControlTemplate>
 
+        <ControlTemplate TargetType="Button" x:Key="btnButtonClick">
+            <Border CornerRadius="10" BorderThickness="0.5" BorderBrush="Black" Background="#98FB98" Height="30" Width="30" Margin="3">
+                <ContentControl  VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Calibry" FontSize="18" Foreground="Black" Content="{TemplateBinding Content}"/>
+            </Border>
+        </ControlTemplate>
+
         <!--Background="#9CFA3F"-->
         <!--#CDFF9A-->
 

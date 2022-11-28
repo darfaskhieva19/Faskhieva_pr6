@@ -10,10 +10,29 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <ListView Name="lGroup" Height="465" Background="#F4FAEE" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Grid.Row="0">
+            <WrapPanel>
+                <GroupBox Header="Клиент" Width="220" Style="{StaticResource gpStyle}">
+                    <ComboBox Name="cbClient"/>
+                </GroupBox>
+                <GroupBox Header="Введите название для поиска" Width="250" Style="{StaticResource gpStyle}">
+                    <TextBox Name="tbGroupSearch" TextChanged="tbGroup_TextChanged"/>
+                </GroupBox>
+                <CheckBox Name="ckb"/>
+                <GroupBox Header="Сортировка" Width="180" Style="{StaticResource gpStyle}">
+                    <ComboBox Name="cbSortirovka" SelectionChanged="cbSortirovka_SelectionChanged">
+                        <ComboBoxItem Content="Без сортировки"/>
+                        <ComboBoxItem Content="от А до Я"/>
+                        <ComboBoxItem Content="от Я до А"/>
+                    </ComboBox>
+                </GroupBox>
+            </WrapPanel>
+        </StackPanel>
+        <ListView Name="lGroup" Height="465" Background="#F4FAEE" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel HorizontalAlignment="Center"></WrapPanel>
@@ -44,7 +63,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button Name="btnBack" Content="Вернуться в меню" Click="btnBack_Click" Template="{StaticResource Btn2}"/>
             <Button Name="btnAdd" Content="Добавить запись" Click="btnAdd_Click" Template="{StaticResource Btn2}"/>
         </StackPanel>

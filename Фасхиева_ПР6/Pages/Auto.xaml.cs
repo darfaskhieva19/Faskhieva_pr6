@@ -15,6 +15,10 @@ using System.Windows.Shapes;
 
 namespace Фасхиева_ПР6
 {
+    //логин пользователя - Nikita12
+    //пароль - Nikitos31@1218
+    //логин администратора - admin, пароль - admin
+
     /// <summary>
     /// Логика взаимодействия для Auto.xaml
     /// </summary>
