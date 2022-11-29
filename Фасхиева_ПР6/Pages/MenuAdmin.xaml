@@ -30,13 +30,13 @@
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
+                <!--<Grid.RowDefinitions>
                     <RowDefinition Height="1.75*"/>
                     <RowDefinition />
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0">
+                </Grid.RowDefinitions>-->
+                <StackPanel VerticalAlignment="Center">
                     <WrapPanel>
-                        <Image Source="\Picture\image.png" Height="200" Width="200"/>
+                        <Image Name="imAdmin" Source="\Picture\image.png" Height="200" Width="200"/>
                         <StackPanel Margin="5">
                             <TextBlock Name="tbSurname" Text="Фамилия: " Style="{StaticResource TBlock}"/>
                             <TextBlock Name="tbName" Text="Имя: " Style="{StaticResource TBlock}"/>
@@ -47,8 +47,6 @@
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
                         <Button Name="btnPhoto" Content="Новое фото" Template="{StaticResource Btn2}" Click="btnPhoto_Click"/>
-                        <Button Name="btnPhotogallery" Content="Добавить фото в галерею" Template="{StaticResource Btn}" Click="btnPhotogallery_Click"/>
-                        <Button Name="btnUpdatePhoto" Content="Изменить фото" Template="{StaticResource Btn2}" Click="btnUpdatePhoto_Click"/>
                     </WrapPanel>
                 </StackPanel>               
             </Grid>

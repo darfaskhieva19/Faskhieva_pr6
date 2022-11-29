@@ -84,7 +84,9 @@ namespace Фасхиева_ПР6
 
         private void btnUpdPhoto_Click(object sender, RoutedEventArgs e) //Выбор фотографии из галлереи
         {
-            
+            List<ClientPhoto> p = DataBase.bd.ClientPhoto.Where(x => x.idClient == user.idClient).ToList();
+            byte[] Bar = p[n].photoBinary;   // считываем изображение из базы (считываем байтовый массив двоичных данных)
+            showImage(Bar, imClient);  // отображаем картинку
         }
 
         private void btnAddPhoto_Click(object sender, RoutedEventArgs e) //добавление фотографии

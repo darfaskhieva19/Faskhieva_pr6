@@ -8,13 +8,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageUser">
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto">
         <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="9*"/>
-        </Grid.RowDefinitions>
-        <TextBlock Text="Личный кабинет" Style="{StaticResource Header}"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="9*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Личный кабинет" Style="{StaticResource Header}"/>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -25,7 +24,7 @@
                         <Button Name="btnUpdateData" Content="Редактировать данные" Click="btnUpdateData_Click" Template="{StaticResource Btn}"/>
                         <Button Name="btnUpdateLoginPass" Content="Сменить пароль" Click="btnUpdateLoginPass_Click" Template="{StaticResource Btn2}"/>
                         <Button Name="btnAddPhoto" Content="Новое фото" Template="{StaticResource Btn2}" Click="btnAddPhoto_Click">
-                        <Button.ToolTip>
+                            <Button.ToolTip>
                                 <ToolTip>
                                     Добавление новой фотографии
                                 </ToolTip>
@@ -47,34 +46,33 @@
                         </Button>
                     </StackPanel>
                 </Grid>
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="2*"/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0">
-                        <WrapPanel>
-                            <Image Name="imClient" Source="\Picture\image.png" Height="205" Width="205"/>
-                            <StackPanel Margin="5">
-                                <TextBlock Name="tbSurname" Text="Фамилия: " Style="{StaticResource TBlock}"/>
-                                <TextBlock Name="tbName" Text="Имя: " Style="{StaticResource TBlock}"/>
-                                <TextBlock Name="tbPatronimyc" Text="Отчество: " Style="{StaticResource TBlock}"/>
-                                <TextBlock Name="tbPhone" Text="Телефон: " Style="{StaticResource TBlock}"/>
-                                <TextBlock Name="tbBirthday" Text="Дата рождения: " Style="{StaticResource TBlock}"/>
-                            </StackPanel>
-                        </WrapPanel>
-                    </StackPanel>
-                    <StackPanel Name="spGallery" Grid.Row="1" Visibility="Collapsed">
-                        <TextBlock Name="tbGallery" Text="Галерея" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource Header}"/>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Name="btnBack" Content="&lt;" Click="btnBack_Click" Template="{StaticResource btnButtonClick}"/>
-                            <Image Name="imGallery" Width="220" Height="220"/>
-                            <Button Name="btnNext" Content=">" Click="btnNext_Click" Template="{StaticResource btnButtonClick}"/>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <WrapPanel>
+                        <Image Name="imClient" Source="\Picture\image.png" Height="202" Width="202"/>
+                        <StackPanel Margin="5">
+                            <TextBlock Name="tbSurname" Text="Фамилия: " Style="{StaticResource TBlock}"/>
+                            <TextBlock Name="tbName" Text="Имя: " Style="{StaticResource TBlock}"/>
+                            <TextBlock Name="tbPatronimyc" Text="Отчество: " Style="{StaticResource TBlock}"/>
+                            <TextBlock Name="tbPhone" Text="Телефон: " Style="{StaticResource TBlock}"/>
+                            <TextBlock Name="tbBirthday" Text="Дата рождения: " Style="{StaticResource TBlock}"/>
                         </StackPanel>
-                        <Button Name="btnChoosePhoto" Content="Обновить фото" Click="btnChoosePhoto_Click" Template="{StaticResource Btn2}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </WrapPanel>                    
+                </StackPanel>
+                <StackPanel Name="spGallery" Grid.Row="1" Visibility="Collapsed">
+                    <TextBlock Name="tbGallery" Text="Галерея" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource Header}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Name="btnBack" Content="&lt;" Click="btnBack_Click" Template="{StaticResource btnButtonClick}"/>
+                        <Image Name="imGallery" Width="220" Height="220"/>
+                        <Button Name="btnNext" Content=">" Click="btnNext_Click" Template="{StaticResource btnButtonClick}"/>
                     </StackPanel>
-                </Grid>
+                    <Button Name="btnChoosePhoto" Content="Обновить фото" Click="btnChoosePhoto_Click" Template="{StaticResource Btn2}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
             </Grid>
         </Grid>
-    </ScrollViewer>
+    </Grid>
 </Page>
