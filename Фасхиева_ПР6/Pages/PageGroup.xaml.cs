@@ -147,6 +147,7 @@ namespace Фасхиева_ПР6
                     break;
             }
 
+
             // поиск совпадений по названию группы
             if (!string.IsNullOrWhiteSpace(tbGroupSearch.Text))  // если строка не пустая и если она не состоит из пробелов
             {
@@ -169,5 +170,6 @@ namespace Фасхиева_ПР6
         {
             Filter();
         }
+
     }
 }

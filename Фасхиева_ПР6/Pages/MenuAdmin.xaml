@@ -10,19 +10,19 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.9*"/>
-            <RowDefinition Height="9.1*"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
+        <StackPanel Grid.Row="0" Margin="5">
             <TextBlock Text="Личный кабинет" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource Header}"/>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.8*"/>
-                <ColumnDefinition Width="2.05*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <StackPanel Orientation="Vertical" Margin="5">
+                <StackPanel Orientation="Vertical" Margin="5" VerticalAlignment="Center">
                     <Button Name="btUpdateData" Content="Редактировать данные" Click="btUpdateData_Click" Template="{StaticResource Btn}"/>
                     <Button Name="btnUpdateLogPass" Content="Сменить пароль" Click="btnUpdateLogPass_Click" Template="{StaticResource Btn2}"/>
                     <Button Name="btUsers" Content="Пользователи" Click="btUsers_Click" Template="{StaticResource Btn2}"/>
@@ -30,13 +30,9 @@
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1">
-                <!--<Grid.RowDefinitions>
-                    <RowDefinition Height="1.75*"/>
-                    <RowDefinition />
-                </Grid.RowDefinitions>-->
-                <StackPanel VerticalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" Margin="10">
                     <WrapPanel>
-                        <Image Name="imAdmin" Source="\Picture\image.png" Height="200" Width="200"/>
+                        <Image Name="imAdmin" Source="\Picture\image.png" Height="250" Width="250"/>
                         <StackPanel Margin="5">
                             <TextBlock Name="tbSurname" Text="Фамилия: " Style="{StaticResource TBlock}"/>
                             <TextBlock Name="tbName" Text="Имя: " Style="{StaticResource TBlock}"/>
@@ -44,9 +40,6 @@
                             <TextBlock Name="tbPhone" Text="Телефон: " Style="{StaticResource TBlock}"/>
                             <TextBlock Name="tbBirthday" Text="Дата рождения: " Style="{StaticResource TBlock}"/>
                         </StackPanel>
-                    </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center">
-                        <Button Name="btnPhoto" Content="Новое фото" Template="{StaticResource Btn2}" Click="btnPhoto_Click"/>
                     </WrapPanel>
                 </StackPanel>               
             </Grid>
