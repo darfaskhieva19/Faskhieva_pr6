@@ -15,7 +15,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <WrapPanel>
+            <WrapPanel Height="100">
                 <GroupBox Header="Клиент" Width="220" Style="{StaticResource gpStyle}">
                     <ComboBox Name="cbClient"/>
                 </GroupBox>
@@ -28,8 +28,6 @@
                         <ComboBoxItem Content="Без сортировки"/>
                         <ComboBoxItem Content="от А до Я"/>
                         <ComboBoxItem Content="от Я до А"/>
-                        <ComboBoxItem Content="по возрастанию"/>
-                        <ComboBoxItem Content="по убыванию"/>
                     </ComboBox>
                 </GroupBox>
             </WrapPanel>
@@ -44,7 +42,7 @@
                 <DataTemplate>
                     <Border Padding="1" CornerRadius="5" BorderThickness="0.5" BorderBrush="Black">
                         <Grid Name="gridM" Width="345" Height="275" Background="{Binding ColorCost}">
-                            <StackPanel>
+                            <StackPanel>                                                              
                                 <TextBlock Text="{Binding NameGroup}" Style="{StaticResource TBlock}" HorizontalAlignment="Center"/>
                                 <TextBlock TextWrapping="Wrap" Name="tbTraning" Uid="{Binding idGroup}"  Loaded="tbTraning_Loaded" Style="{StaticResource TBGroup}"/>
                                 <TextBlock TextWrapping="Wrap" Name="tbClient" Uid="{Binding idGroup}" Loaded="tbClient_Loaded" Style="{StaticResource TBGroup}"/>
@@ -65,9 +63,24 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel>
+            <!--<GroupBox Header="Количество записей на одной странице" >
+                <TextBox Name="PageCount" TextChanged="PageCount_TextChanged"/>
+            </GroupBox>-->
+            <TextBlock Name="tbFirstPages" Uid="first" Text=" &lt;&lt; " MouseDown="tbPrev_MouseDown"/>
+            <TextBlock Name="tbPrev" Uid="prev" Text=" &lt; " MouseDown="tbPrev_MouseDown"/>
+            <TextBlock Name="txt1" Uid="1" Text="{Binding  Path = NPage[0]}" Visibility="{Binding Visible[0]}" FontWeight="{Binding Bold[0]}" MouseDown="tbPrev_MouseDown"/>
+            <TextBlock Name="txt2" Uid="2" Text="{Binding  Path = NPage[1]}" Visibility="{Binding Visible[1]}" FontWeight="{Binding Bold[1]}" MouseDown="tbPrev_MouseDown"/>
+            <TextBlock Name="txt3" Uid="3" Text="{Binding  Path = NPage[2]}" Visibility="{Binding Visible[2]}" FontWeight="{Binding Bold[2]}" MouseDown="tbPrev_MouseDown"/>
+            <TextBlock Name="txt4" Uid="4" Text="{Binding  Path = NPage[3]}" Visibility="{Binding Visible[3]}" FontWeight="{Binding Bold[3]}" MouseDown="tbPrev_MouseDown"/>
+            <TextBlock Name="txt5" Uid="5" Text="{Binding  Path = NPage[4]}" Visibility="{Binding Visible[4]}" FontWeight="{Binding Bold[4]}" MouseDown="tbPrev_MouseDown"/>
+            <TextBlock Name="tbNext" Uid="next" Text=" &gt;" MouseDown="tbPrev_MouseDown"/>
+            <TextBlock Name="tbLastPages" Uid="last" Text=" &gt;&gt;" MouseDown="tbPrev_MouseDown"/>
+        </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button Name="btnBack" Content="Вернуться в меню" Click="btnBack_Click" Template="{StaticResource Btn2}"/>
             <Button Name="btnAdd" Content="Добавить запись" Click="btnAdd_Click" Template="{StaticResource Btn2}"/>
+            
         </StackPanel>
     </Grid>
 </Page>
