@@ -28,6 +28,8 @@
                         <ComboBoxItem Content="Без сортировки"/>
                         <ComboBoxItem Content="от А до Я"/>
                         <ComboBoxItem Content="от Я до А"/>
+                        <ComboBoxItem Content="по возрастанию"/>
+                        <ComboBoxItem Content="по убыванию"/>
                     </ComboBox>
                 </GroupBox>
             </WrapPanel>
