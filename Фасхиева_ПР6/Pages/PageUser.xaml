@@ -63,7 +63,7 @@
                 <Button Name="ChoosePhoto" Content="Изменить фото" Click="ChoosePhoto_Click" Template="{StaticResource Btn2}">
                     <Button.ToolTip>
                         <ToolTip>
-                            Изменение фото на новое или на фото из галереи
+                            Изменение фото на старое из галереи
                         </ToolTip>
                     </Button.ToolTip>
                 </Button>

@@ -75,11 +75,13 @@ namespace Фасхиева_ПР6
 
         private void btnAddPhoto_Click(object sender, RoutedEventArgs e) //добавление фотографии
         {
+            ClientPhoto photo = new ClientPhoto();
+
             try
             {
-                ClientPhoto photo = new ClientPhoto();
                 photo.idClient = user.idClient;
                 OpenFileDialog OFD = new OpenFileDialog();
+                OFD.ShowDialog();
                 string path = OFD.FileName;
                 System.Drawing.Image SDI = System.Drawing.Image.FromFile(path);
                 ImageConverter IC = new ImageConverter();
@@ -97,44 +99,6 @@ namespace Фасхиева_ПР6
         }
         private void ChoosePhoto_Click(object sender, RoutedEventArgs e) //отображение галлереи
         {
-            MessageBoxResult result = MessageBox.Show("Хотите ли Вы добавить новое фото?", "Обновление фотографии", MessageBoxButton.YesNoCancel);
-            if (result == MessageBoxResult.Yes) //если пользователь хочет изменить фото, то добавляет новое фото
-            {
-                try
-                {
-                    ClientPhoto photo = new ClientPhoto();
-                    photo.idClient = user.idClient;
-                    OpenFileDialog OFD = new OpenFileDialog();
-                    string path = OFD.FileName;
-                    System.Drawing.Image SDI = System.Drawing.Image.FromFile(path);
-                    ImageConverter IC = new ImageConverter();
-                    byte[] Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));
-                    photo.photoBinary = Barray;
-                    DataBase.bd.ClientPhoto.Add(photo);
-                    DataBase.bd.SaveChanges();
-                    MessageBox.Show("Успешное добавление фото!");
-                    ClassFrame.frameL.Navigate(new PageUser(user));
-                }
-                catch
-                {
-                    MessageBox.Show("Ошибка с добавлением фото!");
-                }
-            }
-            else if(result == MessageBoxResult.No) //если пользовательне хочет добавлять новое фото, то появляется галерея, из которой можно выбрать фотографию
-            {
-                List<ClientPhoto> p = DataBase.bd.ClientPhoto.Where(x => x.idClient == user.idClient).ToList();
-                if (p.Count != 0)
-                {
-                    UpdatesPhoto_Click();
-                }
-                else
-                {
-                    MessageBox.Show("У пользователя отсутствуют картинки в базе данных!");
-                }
-            }
-        }        
-        void UpdatesPhoto_Click()
-        {
             spGallery.Visibility = Visibility.Visible;
             List<ClientPhoto> p = DataBase.bd.ClientPhoto.Where(x => x.idClient == user.idClient).ToList();
             if (p.Count != 0)  // если объект не пустой, начинает переводить байтовый массив в изображение
@@ -142,7 +106,11 @@ namespace Фасхиева_ПР6
                 byte[] Bar = p[n].photoBinary;   // считываем изображение из базы (считываем байтовый массив двоичных данных)
                 showImage(Bar, imGallery);  // отображаем картинку
             }
-        }
+            else
+            {
+                MessageBox.Show("У пользователя отсутствуют картинки в базе данных!");
+            }
+        }        
 
         int n = 0;
         private void btnBack_Click(object sender, RoutedEventArgs e) //кнопка Назад для фотогаллереи
