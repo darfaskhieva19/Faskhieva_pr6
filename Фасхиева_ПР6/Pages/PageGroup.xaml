@@ -10,28 +10,28 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*"/>
+            <RowDefinition />
             <RowDefinition Height="7*"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
-            <WrapPanel Height="100">
-                <GroupBox Header="Клиент" Width="220" Style="{StaticResource gpStyle}">
-                    <ComboBox Name="cbClient"/>
-                </GroupBox>
-                <GroupBox Header="Введите название для поиска" Width="250" Style="{StaticResource gpStyle}">
-                    <TextBox Name="tbGroupSearch" TextChanged="tbGroup_TextChanged"/>
-                </GroupBox>
-                <CheckBox Name="ckb"/>
-                <GroupBox Header="Сортировка" Width="180" Style="{StaticResource gpStyle}">
-                    <ComboBox Name="cbSortirovka" SelectionChanged="cbSortirovka_SelectionChanged">
-                        <ComboBoxItem Content="Без сортировки"/>
-                        <ComboBoxItem Content="от А до Я"/>
-                        <ComboBoxItem Content="от Я до А"/>
-                    </ComboBox>
-                </GroupBox>
-            </WrapPanel>
+        
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <GroupBox Header="Клиент" Width="220" Style="{StaticResource gpStyle}">
+                <ComboBox Name="cbClient"/>
+            </GroupBox>
+            <GroupBox Header="Введите название для поиска" Width="250" Style="{StaticResource gpStyle}">
+                <TextBox Name="tbGroupSearch" TextChanged="tbGroup_TextChanged"/>
+            </GroupBox>
+            <GroupBox Header="Сортировка" Width="180" Style="{StaticResource gpStyle}">
+                <ComboBox Name="cbSortirovka" SelectionChanged="cbSortirovka_SelectionChanged">
+                    <ComboBoxItem Content="Без сортировки"/>
+                    <ComboBoxItem Content="от А до Я"/>
+                    <ComboBoxItem Content="от Я до А"/>
+                </ComboBox>
+            </GroupBox>
+            <CheckBox Name="ckb"/>
         </StackPanel>
+        
         <ListView Name="lGroup" Height="465" Background="#F4FAEE" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -63,10 +63,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel>
-            <!--<GroupBox Header="Количество записей на одной странице" >
-                <TextBox Name="PageCount" TextChanged="PageCount_TextChanged"/>
-            </GroupBox>-->
+        <!--<StackPanel>
+           
             <TextBlock Name="tbFirstPages" Uid="first" Text=" &lt;&lt; " MouseDown="tbPrev_MouseDown"/>
             <TextBlock Name="tbPrev" Uid="prev" Text=" &lt; " MouseDown="tbPrev_MouseDown"/>
             <TextBlock Name="txt1" Uid="1" Text="{Binding  Path = NPage[0]}" Visibility="{Binding Visible[0]}" FontWeight="{Binding Bold[0]}" MouseDown="tbPrev_MouseDown"/>
@@ -76,11 +74,14 @@
             <TextBlock Name="txt5" Uid="5" Text="{Binding  Path = NPage[4]}" Visibility="{Binding Visible[4]}" FontWeight="{Binding Bold[4]}" MouseDown="tbPrev_MouseDown"/>
             <TextBlock Name="tbNext" Uid="next" Text=" &gt;" MouseDown="tbPrev_MouseDown"/>
             <TextBlock Name="tbLastPages" Uid="last" Text=" &gt;&gt;" MouseDown="tbPrev_MouseDown"/>
-        </StackPanel>
+        </StackPanel>-->
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button Name="btnBack" Content="Вернуться в меню" Click="btnBack_Click" Template="{StaticResource Btn2}"/>
             <Button Name="btnAdd" Content="Добавить запись" Click="btnAdd_Click" Template="{StaticResource Btn2}"/>
-            
+            <GroupBox Header="Количество записей на одной странице" Style="{StaticResource gpStyle}">
+                <TextBox Name="PageCount" TextChanged="PageCount_TextChanged"/>
+            </GroupBox>
         </StackPanel>
+        
     </Grid>
 </Page>

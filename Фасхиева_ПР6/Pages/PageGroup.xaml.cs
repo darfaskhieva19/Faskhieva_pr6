@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing.Drawing2D;
@@ -124,13 +125,25 @@ namespace Фасхиева_ПР6
         }
         void Filter() // метод для одновременной фильтрации, поиска и сортировки
         {
-            List<Group> groups = new List<Group>(); // пустой список, который далее будет заполнять элементами, удавлетворяющими условиям фильтрации, поиска и сортировки
+            List<Group> listG = DataBase.bd.Group.ToList();
+
+            /*List<Group> groups = new List<Group>(); */// пустой список, который далее будет заполнять элементами, удавлетворяющими условиям фильтрации, поиска и сортировки
             string client = cbClient.SelectedValue.ToString();  // выбранное пользователем клиента
-            int index = cbClient.SelectedIndex;
+            int index = cbClient.SelectedIndex;           
             // поиск значений, удовлетворяющих условия фильтра
             if (index != 0)
             {
-                //group = DataBase.bd.Group.Where(x => x.SeasonTicket.idC == breed).ToList();
+                listFilter = new List<Group>();
+                foreach (SeasonTicket st in )
+                {
+                    foreach (Group group in listG)
+                    {
+                        if(group.idGroup == st.idGroup)
+                        {
+                            listFilter.Add(group);
+                        }
+                    }
+                }
             }
             else  // если выбран пункт "Все клиенты", то сбрасываем фильтрацию:
             {
