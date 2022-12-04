@@ -16,8 +16,8 @@
         </Grid.RowDefinitions>
         
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <GroupBox Header="Клиент" Width="220" Style="{StaticResource gpStyle}">
-                <ComboBox Name="cbClient"/>
+            <GroupBox Header="Инструктор" Width="220" Style="{StaticResource gpStyle}">
+                <ComboBox Name="cbInstructors" SelectionChanged="cbInstructors_SelectionChanged"/>
             </GroupBox>
             <GroupBox Header="Введите название для поиска" Width="250" Style="{StaticResource gpStyle}">
                 <TextBox Name="tbGroupSearch" TextChanged="tbGroup_TextChanged"/>
@@ -29,7 +29,7 @@
                     <ComboBoxItem Content="от Я до А"/>
                 </ComboBox>
             </GroupBox>
-            <CheckBox Name="ckb"/>
+            <CheckBox Name="ckb" Checked="ckb_Checked" Unchecked="ckb_Checked"/>
         </StackPanel>
         
         <ListView Name="lGroup" Height="465" Background="#F4FAEE" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">

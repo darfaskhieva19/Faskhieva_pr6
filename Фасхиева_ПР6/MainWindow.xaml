@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Фасхиева_ПР6"
         mc:Ignorable="d"
-        Title="Центр спортивного отдыха" Height="680" Width="900" MaxHeight="710" MaxWidth="905">
+        Title="Центр спортивного отдыха" Height="780" Width="900" MaxHeight="800" MaxWidth="905">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>

@@ -27,21 +27,26 @@ namespace Фасхиева_ПР6
         ClassChange pc = new ClassChange();
         Clients user;
         List<Group> listFilter = new List<Group>();
-        List<Group> groups = DataBase.bd.Group.ToList();
+        List<Group> group = DataBase.bd.Group.ToList();
         public PageGroup(Clients user)
         {
+
             InitializeComponent();
-            lGroup.ItemsSource = groups;
+
             lGroup.ItemsSource = DataBase.bd.Group.ToList();
             this.user = user;
-            List <Clients> client = DataBase.bd.Clients.ToList();
-            cbClient.Items.Add("Все клиенты");
-            for(int i = 0; i < client.Count; i++)
+
+            List <Instructors> intructor = DataBase.bd.Instructors.ToList();
+            cbInstructors.Items.Add("Все инструктора");
+            for(int i = 0; i < intructor.Count; i++)
             {
-                cbClient.Items.Add(client[i].NameClient);
+                cbInstructors.Items.Add(intructor[i].surname);
             }
-            cbClient.SelectedIndex = 0; // выбранное по умолчанию значение в списке с породами котов ("Все клиенты")
+            cbInstructors.SelectedIndex = 0; // выбранное по умолчанию значение в списке с породами котов ("Все клиенты")
             cbSortirovka.SelectedIndex = 0; // выбранное по умолчанию значение в списке с видами сортировки ("Без сортировки")
+
+            pc.CountPage = DataBase.bd.Group.ToList().Count;
+            DataContext = pc;
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -122,55 +127,59 @@ namespace Фасхиева_ПР6
                 strCl+=t.Clients.surname + " " + t.Clients.name + " " + t.Clients.patronimyc + " ";
             }
             tb.Text = "Клиент: " + strCl.Substring(0, strCl.Length);
-        }
+        }        
         void Filter() // метод для одновременной фильтрации, поиска и сортировки
         {
             List<Group> listG = DataBase.bd.Group.ToList();
-
-            /*List<Group> groups = new List<Group>(); */// пустой список, который далее будет заполнять элементами, удавлетворяющими условиям фильтрации, поиска и сортировки
-            string client = cbClient.SelectedValue.ToString();  // выбранное пользователем клиента
-            int index = cbClient.SelectedIndex;           
-            // поиск значений, удовлетворяющих условия фильтра
+            string instructor = cbInstructors.SelectedValue.ToString();
+            int index = cbInstructors.SelectedIndex;
+            List<Training> training = DataBase.bd.Training.Where(z=>z.Instructors.surname == instructor).ToList();
             if (index != 0)
             {
                 listFilter = new List<Group>();
-                foreach (SeasonTicket st in )
+                foreach(Training tr in training)
                 {
-                    foreach (Group group in listG)
+                    foreach(Group grp in listG)
                     {
-                        if(group.idGroup == st.idGroup)
+                        if (grp.idGroup == tr.idGroup)
                         {
-                            listFilter.Add(group);
+                            listFilter.Add(grp);
                         }
                     }
                 }
             }
-            else  // если выбран пункт "Все клиенты", то сбрасываем фильтрацию:
+            else  // если выбран пункт "Все инструктора", то сбрасываем фильтрацию:
             {
-                groups = DataBase.bd.Group.ToList();
+                listFilter = DataBase.bd.Group.ToList();
             }
 
             // сортировка
             switch (cbSortirovka.SelectedIndex)
             {
                 case 1:
-                        groups.Sort((x, y) => x.NameGroup.CompareTo(y.NameGroup));
+                    listFilter.Sort((x, y) => x.NameGroup.CompareTo(y.NameGroup));
                     break;
                 case 2:
-                        groups.Sort((x, y) => x.NameGroup.CompareTo(y.NameGroup));
-                        groups.Reverse();
+                    listFilter.Sort((x, y) => x.NameGroup.CompareTo(y.NameGroup));
+                    listFilter.Reverse();
                     break;
             }
+
+            if (ckb.IsChecked == true)
+            {
+                
+            }
+
 
 
             // поиск совпадений по названию группы
             if (!string.IsNullOrWhiteSpace(tbGroupSearch.Text))  // если строка не пустая и если она не состоит из пробелов
             {
-                groups = groups.Where(x => x.NameGroup.ToLower().Contains(tbGroupSearch.Text.ToLower())).ToList();
+                listFilter = listFilter.Where(x => x.NameGroup.ToLower().Contains(tbGroupSearch.Text.ToLower())).ToList();
             }
 
-            lGroup.ItemsSource = groups;
-            if (groups.Count == 0)
+            lGroup.ItemsSource = listFilter;
+            if (listFilter.Count == 0)
             {
                 MessageBox.Show("нет записей");
             }
@@ -209,7 +218,7 @@ namespace Фасхиева_ПР6
         {
             try
             {
-                //pc.CountPage = Convert.ToInt32(PageCount.Text); // если в текстовом поле есnь значение, присваиваем его свойству объекта, которое хранит количество записей на странице
+                pc.CountPage = Convert.ToInt32(PageCount.Text); // если в текстовом поле есnь значение, присваиваем его свойству объекта, которое хранит количество записей на странице
             }
             catch
             {
@@ -218,6 +227,16 @@ namespace Фасхиева_ПР6
             pc.Countlist = listFilter.Count;  // присваиваем новое значение свойству, которое в объекте отвечает за общее количество записей
             lGroup.ItemsSource = listFilter.Skip(0).Take(pc.CountPage).ToList();  // отображаем первые записи в том количестве, которое равно CountPage
             pc.CurrentPage = 1; // текущая страница - это страница 1
+        }
+
+        private void cbInstructors_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void ckb_Checked(object sender, RoutedEventArgs e)
+        {
+            Filter();
         }
     }
 }
