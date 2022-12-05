@@ -76,6 +76,18 @@
             <Setter Property="BorderThickness" Value="2"/>
         </Style>
 
+        <Style TargetType="GroupBox" x:Key="GRKolvo">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Calibry"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="BorderBrush" Value="#98FB98"/>
+            <Setter Property="Width" Value="295"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+
         <ControlTemplate TargetType="Button" x:Key="Btn">
             <Border CornerRadius="17" BorderThickness="0.5" BorderBrush="Black" Background="#98FB98" Height="40" Width="195" Margin="4">
                 <ContentControl  VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Calibry" FontSize="16" Foreground="Black" Content="{TemplateBinding Content}"/>

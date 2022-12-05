@@ -167,10 +167,9 @@ namespace Фасхиева_ПР6
 
             if (ckb.IsChecked == true)
             {
+                //catList = catList.Where(x=>x.Photo!=null).ToList();
                 
             }
-
-
 
             // поиск совпадений по названию группы
             if (!string.IsNullOrWhiteSpace(tbGroupSearch.Text))  // если строка не пустая и если она не состоит из пробелов
