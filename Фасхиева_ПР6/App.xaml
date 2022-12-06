@@ -154,8 +154,13 @@
             </Border>
         </ControlTemplate>
 
-        <!--Background="#9CFA3F"-->
-        <!--#CDFF9A-->
+        <Style TargetType="TextBlock" x:Key="TBPage">
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
 
     </Application.Resources>
 </Application>

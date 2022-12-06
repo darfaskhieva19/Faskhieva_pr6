@@ -165,10 +165,9 @@ namespace Фасхиева_ПР6
                     break;
             }
 
-            if (ckb.IsChecked == true)
+            if ((bool)ckb.IsChecked)
             {
-                //catList = catList.Where(x=>x.Photo!=null).ToList();
-                
+                listFilter = listFilter.Where(x => x.ColorCost == Brushes.Lavender).ToList();
             }
 
             // поиск совпадений по названию группы
@@ -194,7 +193,7 @@ namespace Фасхиева_ПР6
             Filter();
         }
 
-        private void tbPrev_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Page_MouseDown(object sender, MouseButtonEventArgs e)
         {
             TextBlock tb = (TextBlock)sender;
 
@@ -206,6 +205,12 @@ namespace Фасхиева_ПР6
                 case "next":
                     pc.CurrentPage++;
                     break;
+                case "first":
+                    pc.CurrentPage = 1;
+                    break;
+                case "last":
+                    pc.CurrentPage = pc.CountPages;
+                    break;
                 default:
                     pc.CurrentPage = Convert.ToInt32(tb.Text);
                     break;
@@ -213,7 +218,17 @@ namespace Фасхиева_ПР6
             lGroup.ItemsSource = listFilter.Skip(pc.CurrentPage * pc.CountPage - pc.CountPage).Take(pc.CountPage).ToList();  // оображение записей постранично с определенным количеством на каждой странице
         }
 
-        private void PageCount_TextChanged(object sender, TextChangedEventArgs e)
+        private void cbInstructors_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void ckb_Checked(object sender, RoutedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void PageCount_TextChanged_1(object sender, TextChangedEventArgs e)
         {
             try
             {
@@ -226,16 +241,6 @@ namespace Фасхиева_ПР6
             pc.Countlist = listFilter.Count;  // присваиваем новое значение свойству, которое в объекте отвечает за общее количество записей
             lGroup.ItemsSource = listFilter.Skip(0).Take(pc.CountPage).ToList();  // отображаем первые записи в том количестве, которое равно CountPage
             pc.CurrentPage = 1; // текущая страница - это страница 1
-        }
-
-        private void cbInstructors_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Filter();
-        }
-
-        private void ckb_Checked(object sender, RoutedEventArgs e)
-        {
-            Filter();
         }
     }
 }

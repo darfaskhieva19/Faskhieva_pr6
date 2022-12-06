@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Фасхиева_ПР6
 {
-    internal class ClassChange
+    internal class ClassChange : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;  //событие, для изменения значения одного из массивов свойств, описанных ниже
         static int countitems = 5; //количество объектов для отображения (1 2 3 4 5)
@@ -34,6 +34,7 @@ namespace Фасхиева_ПР6
                 }
             }
         }
+
         int countpage;//количество записей на странице
         public int CountPage  //свойство, в котором хранится количество записей на странице, при изменении данного свойства будет изменяться общее количесво страниц для отображения
         {
@@ -51,6 +52,7 @@ namespace Фасхиева_ПР6
                 }
             }
         }
+
         int countlist; // количество записей в списке
         public int Countlist //свойство, в котором хранится общее количество записей в списке, при изменении данного свойства будет изменяться общее количесво страниц для отображения
         {
